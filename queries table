@@ -1,0 +1,17 @@
+create table Rummyregister(USER_ID INT NOT NULL AUTO_INCREMENT, USERNAME VARCHAR(20), PASSWORD VARCHAR(20), EMAILID VARCHAR(30), MOBILE INT, PRIMARY KEY(USER_ID));
+
+create table rummyregister(USER_ID INT NOT NULL AUTO_INCREMENT, USERNAME VARCHAR(20), PASSWORD VARCHAR(20), EMAILID VARCHAR(30), MOBILE VARCHAR(15), PRIMARY KEY(USER_ID));
+
+insert into Rummyregister(username,password,emailid,mobile) VALUES ('arunpadu','arun@444','arunpadmanaban@gmail.com','9840375555');
+
+
+create table playerdetail(REGISTERDATE DATE,GAMERLEVEL VARCHAR(20),
+USER_ID INT NOT NULL,GAMESPLAYED VARCHAR(20), FOREIGN KEY fk_USERID(USER_ID) REFERENCES Rummyregister(USER_ID));
+
+Insert into playerdetails (REGISTERDATE, GAMERLEVEL, USER_ID, GAMESPLAYED) values ('18-06-10','beginner','5','chess');
+
+create table student(ROLLNO INT NOT NULL AUTO_INCREMENT, NAME VARCHAR(20),PASSWORD VARCHAR(20), EMAILID VARCHAR(30),SUB1 VARCHAR(20),SUB2 VARCHAR(20),MOBILE VARCHAR(15), PRIMARY KEY(ROLLNO));
+
+insert into student(name,password,emailid,sub1,sub2,mobile) VALUES ('arunpadmanaban','arun@444','arunpadmanaban@gmail.com','70','75','9840375555');
+
+insert into student(name,password,emailid,sub1,sub2,mobile) VALUES ('chenni','karthikchenni11','chennikarthi@gmail.com','80','89','9840113218');

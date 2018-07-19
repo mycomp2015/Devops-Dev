@@ -1,0 +1,87 @@
+Difference between my sql 5.5 and mysql 5.7:
+
+my sql 5.7 supports JSON and mysql 5.5 does not support JSON.Queries that executed a JSON function that raised an error could cause a server exit.
+
+SIGNAL is the way to “return” an error.
+
+RESIGNAL passes on the error condition information that is available during execution of a condition handler within a compound statement inside a stored procedure or function, trigger, or event.
+
+
+Alter in mysql 5.7 along with partition options can be used.
+
+
+Insert DELAYED is not supported in my sql 5.7.
+
+in mysql 5.7 The statements CREATE USER IF EXISTS (or IF NOT EXISTS) and ALTER USER IF EXISTS (or IF NOT EXISTS) were written to the binary log even when the query resulted in an error. MySQL Server now checks for errors that cause these queries to fail (for example, an invalid plugin was specified), and does not log the statement in that situation.
+
+ Security:
+our identity is based on two pieces of information:
+
+The client host from which you connect
+
+Your MySQL user name:
+
+If the User column value is nonblank, the user name in an incoming connection must match exactly. If the User value is blank, it matches any user name. If the user table row that matches an incoming connection has a blank user name, the user is considered to be an anonymous user with no name, not a user with the name that the client actually specified. This means that a blank user name is used for all further access checking for the duration of the connection.
+
+Grants for tables in mysql 5.5 and mysql 5.7.
+  For mysql 5.7:
+ For example, to determine the privileges that are granted to an account with user name and host name values of bob and pc84.example.com, use this statement:
+
+SHOW GRANTS FOR 'bob'@'pc84.example.com';
+To display nonprivilege properties of an account, use SHOW CREATE USER:
+
+SHOW CREATE USER 'bob'@'pc84.example.com';
+
+for mysql 5.5:
+For example, to determine the privileges that are granted to an account with user name and host name values of bob and pc84.example.com, use this statement:
+
+
+SHOW GRANTS FOR 'bob'@'pc84.example.com';
+
+server timeout statements:
+SELECT MAX_STATEMENT TIME=120 * FROM CUSTOMER
+
+If we specify this statement in tildy.cnf and if the query that is executed by a particular user runs past the time specified in the statement,it gets terminated.
+
+Passwords needs to be changed periodically in mysql 5.7
+
+random password is set on install.that can be viewed /root.mysqlpassword. The accounts cannot be anonymous in mysql 5.7.
+
+Order by in mysql 5.5 and 5.6:
+https://dba.stackexchange.com/questions/169163/mysql-5-5-vs-5-6-5-7-above-same-database-same-query-but-different-output-limit
+
+My sql 5.5 and 5.7: date and time datatype:
+
+| TIME[(fsp)]
+  | TIMESTAMP[(fsp)]
+  | DATETIME[(fsp)]
+
+In mysql 5.7 you can specify time upto fractional seconds.This is not available in mysql 5.5.
+
+Mysql 5.5 ,Select now() does not display with fraction of seconds but mysql 5.7 does display with fraction of seconds for now function.
+
+
+The EXISTS AND IN COMMAND RAN FASTER in mysql 5.7 than it did in mysql 5.5:
+Not sure about exists and in
+
+Although JSON is quite useful in sharing data but at the same time it can be quite dangerous.Given the fact that  every JSON service returns a JSON Response  that will be wrapped in function call that will be executed by the browser.This raises alarm if it is opened by an untrusted browser then it can be hacked.
+
+Changes of note:
+	•	ONLY_FULL_GROUP_BY is now turned on by default, meaning MySQL will no longer return random data when a user has incorrectly specified columns in the where clause, but missed them out of the group by clause.
+	•	Improvements to online DDL - more ALTER operations can be done online without the storage engine having to make a copy of the object in question.
+	•	InnoDB now supports MySQL-supported spatial data types
+	•	Native JSON support
+	•	Multi-source replication
+
+Mysql 5.7 has decreased mysql attack surface.attack surface is the sum of points where an unauthorised user can enter and extract data from an environment.
+
+Fully functional Alter User in mysql 5.7
+
+ You can disable temporary user accounts.
+
+User account names are now 32 characters long in mysql 5.7 whereas in mysql 5.5 it is 16 characters long
+
+SQL injection is prevented in mysql 5.7
+
+WE can change the code after it has been submitted in mysql 5.7
+

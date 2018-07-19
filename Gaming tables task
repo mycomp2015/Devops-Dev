@@ -1,0 +1,287 @@
+mysql> create table cointype(COINTYPEID int NOT NULL AUTO_INCREMENT,DECSRIPTION VARCHAR(20),PRIMARY KEY(COINTYPEID));
+ERROR 1046 (3D000): No database selected
+mysql> create database task;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use task;
+Database changed
+mysql> create table cointype(COINTYPEID int NOT NULL AUTO_INCREMENT,DECSRIPTION VARCHAR(20),PRIMARY KEY(COINTYPEID));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc cointype;
++-------------+-------------+------+-----+---------+----------------+
+| Field       | Type        | Null | Key | Default | Extra          |
++-------------+-------------+------+-----+---------+----------------+
+| COINTYPEID  | int(11)     | NO   | PRI | NULL    | auto_increment |
+| DECSRIPTION | varchar(20) | YES  |     | NULL    |                |
++-------------+-------------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> show tables;
++----------------+
+| Tables_in_task |
++----------------+
+| cointype       |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> create table gametype(GAMEID int not null AUTO_INCREMENT,GAMETYPE VARCHAR(20));
+ERROR 1075 (42000): Incorrect table definition; there can be only one auto column and it must be defined as a key
+mysql> create table gametype(GAMEID int not null AUTO_INCREMENT,GAMETYPE VARCHAR(20) PRIMARY KEY(GAMEID));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(GAMEID))' at line 1
+mysql> create table gametype(GAMEID int NOT NULL AUTO_INCREMENT,GAMETYPE VARCHAR(20) ,PRIMARY KEY(GAMEID));
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> desc gametype;
++----------+-------------+------+-----+---------+----------------+
+| Field    | Type        | Null | Key | Default | Extra          |
++----------+-------------+------+-----+---------+----------------+
+| GAMEID   | int(11)     | NO   | PRI | NULL    | auto_increment |
+| GAMETYPE | varchar(20) | YES  |     | NULL    |                |
++----------+-------------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> create table user(USERID int not null auto_increment,USERNAME VARCHAR(20) not null,CONTACTNO bigint not null, ADDR VARCHAR (50), ACCNTSTATUS INT, PWD VARCHAR(20), REGTIME datetime,LASTLOGIN datetime, PRIMARY KEY(USERID));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc user;  
++-------------+-------------+------+-----+---------+----------------+
+| Field       | Type        | Null | Key | Default | Extra          |
++-------------+-------------+------+-----+---------+----------------+
+| USERID      | int(11)     | NO   | PRI | NULL    | auto_increment |
+| USERNAME    | varchar(20) | NO   |     | NULL    |                |
+| CONTACTNO   | bigint(20)  | NO   |     | NULL    |                |
+| ADDR        | varchar(50) | YES  |     | NULL    |                |
+| ACCNTSTATUS | int(11)     | YES  |     | NULL    |                |
+| PWD         | varchar(20) | YES  |     | NULL    |                |
+| REGTIME     | datetime    | YES  |     | NULL    |                |
+| LASTLOGIN   | datetime    | YES  |     | NULL    |                |
++-------------+-------------+------+-----+---------+----------------+
+
+mysql>  insert into user(USERNAME,CONTACTNO,ADDR,ACCNTSTATUS,PWD,REGTIME,LASTLOGIN)VALUES('Len','9176007745','Avadi','1','HONDCITY8033','2018-07-13 15:00','2018-07-12 15:05');
+Query OK, 1 row affected (0.00 sec)
+
+mysql>  insert into user(USERNAME,CONTACTNO,ADDR,ACCNTSTATUS,PWD,REGTIME,LASTLOGIN)VALUES('sen','9176507746','chrompet','0','FIAT8033','2018-06-13 14:00','2018-07-12 14:05');
+Query OK, 1 row affected (0.00 sec)
+
+mysql>  insert into user(USERNAME,CONTACTNO,ADDR,ACCNTSTATUS,PWD,REGTIME,LASTLOGIN)VALUES('sendhil','9176507747','pammal','0','FIAt4727','2018-06-12 14:30','2018-07-12 14:35');
+Query OK, 1 row affected (0.00 sec)
+
+mysql>  insert into user(USERNAME,CONTACTNO,ADDR,ACCNTSTATUS,PWD,REGTIME,LASTLOGIN)VALUES('arjun','8176507747','pallavaram','1','satt4727','2018-06-11 14:30','2018-07-11 14:35');
+Query OK, 1 row affected (0.00 sec)
+
+mysql>  insert into user(USERNAME,CONTACTNO,ADDR,ACCNTSTATUS,PWD,REGTIME,LASTLOGIN)VALUES('arjun','8176507747','pallavaram','1','satt4727','2018-06-10 14:35','2018-07-10 14:40');
+Query OK, 1 row affected (0.00 sec)
+
+mysql>  insert into user(USERNAME,CONTACTNO,ADDR,ACCNTSTATUS,PWD,REGTIME,LASTLOGIN)VALUES('arun','9186507747','pallavaram','1','satt4727','2018-06-11 11:40','2018-07-11 11:45');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> ALTER TABLE user ALTER COLUMN ACCNTSTATUS SET DEFAULT '0';            
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE user ADD CONSTRAINT TESTSTATUS CHECK(ACOOUNTSTATUS<=1);
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> create table user(USERID int not null auto_increment,USERNAME VARCHAR(20) not null,CONTACTNO bigint not null, ADDR VARCHAR (50), ACCNTSTATUS INT, PWD VARCHAR(20), REGTIME datetime,LASTLOGIN datetime, PRIMARY KEY(USERID));
+Query OK, 0 rows affected (0.01 sec)
+
+
+mysql> desc user;      
++-------------+-------------+------+-----+---------+----------------+
+| Field       | Type        | Null | Key | Default | Extra          |
++-------------+-------------+------+-----+---------+----------------+
+| USERID      | int(11)     | NO   | PRI | NULL    | auto_increment |
+| USERNAME    | varchar(20) | NO   |     | NULL    |                |
+| CONTACTNO   | bigint(20)  | NO   |     | NULL    |                |
+| ADDR        | varchar(50) | YES  |     | NULL    |                |
+| ACCNTSTATUS | int(11)     | YES  |     | 0       |                |
+| PWD         | varchar(20) | YES  |     | NULL    |                |
+| REGTIME     | datetime    | YES  |     | NULL    |                |
+| LASTLOGIN   | datetime    | YES  |     | NULL    |                |
++-------------+-------------+------+-----+---------+----------------+
+mysql> alter table user AUTO_INCREMENT=1001;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table user add constraint test_status check(ACCNTSTATUS<=1);
+Query OK, 0 rows affected (0.00 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> insert into user(USERNAME,CONTACTNO,ADDR,ACCNTSTATUS,PWD,REGTIME,LASTLOGIN)VALUES('ARAVIND','9884279171','19/6 JANAKIRAM COLONY EXTN ARUMBAKKAM','0','ferrari12#','2018-07-13 16:00','2018-07-13 16:05');
+Query OK, 1 row affected (0.00 sec)
+
+mysql>  insert into user(USERNAME,CONTACTNO,ADDR,ACCNTSTATUS,PWD,REGTIME,LASTLOGIN)VALUES('Akash','8754563963','ANNA NAGAR','1','SKODA4727#','2018-07-13 16:05','2018-07-13 16:10');
+Query OK, 1 row affected (0.00 sec)
+
+mysql>  insert into user(USERNAME,CONTACTNO,ADDR,ACCNTSTATUS,PWD,REGTIME,LASTLOGIN)VALUES('Leon','9176007744','ANNA NAGAR','2','HONDACITY8033','2018-07-12 16:00','2018-07-12 16:05');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> update user set ACCNTSTATUS=1 where USERNAME='Leon';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from user;
++--------+----------+------------+---------------------------------------+-------------+---------------+---------------------+---------------------+
+| USERID | USERNAME | CONTACTNO  | ADDR                                  | ACCNTSTATUS | PWD           | REGTIME             | LASTLOGIN           |
++--------+----------+------------+---------------------------------------+-------------+---------------+---------------------+---------------------+
+|   1001 | ARAVIND  | 9884279171 | 19/6 JANAKIRAM COLONY EXTN ARUMBAKKAM |           0 | ferrari12#    | 2018-07-13 16:00:00 | 2018-07-13 16:05:00 |
+|   1002 | Akash    | 8754563963 | ANNA NAGAR                            |           1 | SKODA4727#    | 2018-07-13 16:05:00 | 2018-07-13 16:10:00 |
+|   1003 | Leon     | 9176007744 | ANNA NAGAR                            |           1 | HONDACITY8033 | 2018-07-12 16:00:00 | 2018-07-12 16:05:00 |
+|   1004 | Len      | 9176007745 | Avadi                                 |           1 | HONDCITY8033  | 2018-07-13 15:00:00 | 2018-07-12 15:05:00 |
+|   1005 | sen      | 9176507746 | chrompet                              |           0 | FIAT8033      | 2018-06-13 14:00:00 | 2018-07-12 14:05:00 |
+|   1006 | sendhil  | 9176507747 | pammal                                |           0 | FIAt4727      | 2018-06-12 14:30:00 | 2018-07-12 14:35:00 |
+|   1007 | arjun    | 8176507747 | pallavaram                            |           1 | satt4727      | 2018-06-11 14:30:00 | 2018-07-11 14:35:00 |
+|   1008 | shruthi  | 8176507747 | pallavaram                            |           1 | satt4727      | 2018-06-10 14:35:00 | 2018-07-10 14:40:00 |
+|   1009 | arun     | 9186507747 | pallavaram                            |           1 | satt4727      | 2018-06-11 11:40:00 | 2018-07-11 11:45:00 |
+|   1010 | arun     | 9186507747 | pallavaram                            |           1 | satt4727      | 2018-06-11 23:50:00 | 2018-07-11 23:55:00 |
++--------+----------+------------+---------------------------------------+-------------+---------------+---------------------+---------------------+
+10 rows in set (0.00 sec)
+
+ 
+insert into gametype(GAMENAME)VALUES('Rummy');
+
+mysql> insert into gametype(GAMENAME)VALUES('Poker');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from gametype;
++--------+----------+
+| GAMEID | GAMENAME |
++--------+----------+
+|      1 | Rummy    |
+|      2 | Poker    |
++--------+----------+
+
+mysql> alter table cointype change  DECSRIPTION DESCRIPTION VARCHAR(20);
+
+mysql> desc cointype;
++-------------+-------------+------+-----+---------+----------------+
+| Field       | Type        | Null | Key | Default | Extra          |
++-------------+-------------+------+-----+---------+----------------+
+| COINTYPEID  | int(11)     | NO   | PRI | NULL    | auto_increment |
+| DECSRIPTION | varchar(20) | YES  |     | NULL    |                |
++-------------+-------------+------+-----+---------+----------------+
+
+mysql> insert into cointype(DESCRIPTION)values('Cash');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into cointype(DESCRIPTION)values('Promo');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from cointype;
++------------+-------------+
+| COINTYPEID | DESCRIPTION |
++------------+-------------+
+|          1 | Cash        |
+|          2 | Promo       |
++------------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> create table gth(GTID INT AUTO_INCREMENT PRIMARY KEY, UID INT,STAKE double, WIN double,SD datetime,ED datetime, UPDATEDATE TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,GAMEID INT,FOREIGN KEY fk_gid(GAMEID) REFERENCES gametype(GAMEID));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> insert into gth(UID,GAMEID,STAKE,WIN,SD,ED)values('1001','1','100','200','2018-07-12 15:24','2018-07-12 15:29');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into gth(UID,GAMEID,STAKE,WIN,SD,ED)values('1002','2','200','400','2018-07-11 14:55','2018-07-11 15:00');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from gth;
++------+------+-------+------+---------------------+---------------------+---------------------+--------+
+| GTID | UID  | STAKE | WIN  | SD                  | ED                  | UPDATEDATE          | GAMEID |
++------+------+-------+------+---------------------+---------------------+---------------------+--------+
+|    1 | 1001 |   100 |  200 | 2018-07-12 15:24:00 | 2018-07-12 15:29:00 | 2018-07-13 09:55:30 |      1 |
+|    2 | 1002 |   200 |  400 | 2018-07-11 14:55:00 | 2018-07-11 15:00:00 | 2018-07-13 09:57:08 |      2 |
++------+------+-------+------+---------------------+---------------------+---------------------+--------+
+2 rows in set (0.00 sec)
+
+mysql> insert into gth(UID,GAMEID,STAKE,WIN,SD,ED)values('1003','2','200','0','2017-07-19 14:55','2017-07-19 15:00');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into gth(UID,GAMEID,STAKE,WIN,SD,ED)values('1004','1','200','400','2017-07-10 13:55','2017-07-10 14:00');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into gth(UID,GAMEID,STAKE,WIN,SD,ED)values('1004','1','200','400','2017-07-09 11:55','2017-07-09 12:00');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into gth(UID,GAMEID,STAKE,WIN,SD,ED)values('1005','1','200','400','2017-07-09 11:55','2017-07-09 12:00');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into gth(UID,GAMEID,STAKE,WIN,SD,ED)values('1006','2','400','600','2017-07-19 10:55','2017-07-19 11:00');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from gth;
++------+------+-------+------+---------------------+---------------------+---------------------+--------+
+| GTID | UID  | STAKE | WIN  | SD                  | ED                  | UPDATEDATE          | GAMEID |
++------+------+-------+------+---------------------+---------------------+---------------------+--------+
+|    1 | 1001 |   100 |  200 | 2018-07-12 15:24:00 | 2018-07-12 15:29:00 | 2018-07-13 09:55:30 |      1 |
+|    2 | 1002 |   200 |  400 | 2018-07-11 14:55:00 | 2018-07-11 15:00:00 | 2018-07-13 09:57:08 |      2 |
+|    3 | 1003 |   200 |    0 | 2017-07-19 14:55:00 | 2017-07-19 15:00:00 | 2018-07-13 09:58:33 |      2 |
+|    4 | 1004 |   200 |  400 | 2017-07-10 13:55:00 | 2017-07-10 14:00:00 | 2018-07-13 09:59:09 |      1 |
+|    5 | 1004 |   200 |  400 | 2017-07-09 11:55:00 | 2017-07-09 12:00:00 | 2018-07-13 09:59:48 |      1 |
+|    6 | 1005 |   200 |  400 | 2017-07-09 11:55:00 | 2017-07-09 12:00:00 | 2018-07-13 10:00:13 |      1 |
+|    7 | 1006 |   400 |  600 | 2017-07-19 10:55:00 | 2017-07-19 11:00:00 | 2018-07-13 10:01:06 |      2 |
++------+------+-------+------+---------------------+---------------------+---------------------+--------+
+7 rows in set (0.00 sec)
+
+mysql> insert into gth(UID,GAMEID,STAKE,WIN,SD,ED)values('1007','2','400','600','2017-07-19 10:55','2017-07-19 11:00');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into gth(UID,GAMEID,STAKE,WIN,SD,ED)values('1008','1','500','1000','2017-07-12 10:55','2017-07-12 11:00');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into gth(UID,GAMEID,STAKE,WIN,SD,ED)values('1009','2','50','100','2017-06-12 11:45','2017-06-12 11:50');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> alter table gth modify GAMEID INT(11) after UID;
+Query OK, 10 rows affected (0.02 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+mysql> select * from gth
+    -> ;
++------+------+--------+-------+------+---------------------+---------------------+---------------------+
+| GTID | UID  | GAMEID | STAKE | WIN  | SD                  | ED                  | UPDATEDATE          |
++------+------+--------+-------+------+---------------------+---------------------+---------------------+
+|    1 | 1001 |      1 |   100 |  200 | 2018-07-12 15:24:00 | 2018-07-12 15:29:00 | 2018-07-13 09:55:30 |
+|    2 | 1002 |      2 |   200 |  400 | 2018-07-11 14:55:00 | 2018-07-11 15:00:00 | 2018-07-13 09:57:08 |
+|    3 | 1003 |      2 |   200 |    0 | 2017-07-19 14:55:00 | 2017-07-19 15:00:00 | 2018-07-13 09:58:33 |
+|    4 | 1004 |      1 |   200 |  400 | 2017-07-10 13:55:00 | 2017-07-10 14:00:00 | 2018-07-13 09:59:09 |
+|    5 | 1004 |      1 |   200 |  400 | 2017-07-09 11:55:00 | 2017-07-09 12:00:00 | 2018-07-13 09:59:48 |
+|    6 | 1005 |      1 |   200 |  400 | 2017-07-09 11:55:00 | 2017-07-09 12:00:00 | 2018-07-13 10:00:13 |
+|    7 | 1006 |      2 |   400 |  600 | 2017-07-19 10:55:00 | 2017-07-19 11:00:00 | 2018-07-13 10:01:06 |
+|    8 | 1007 |      2 |   400 |  600 | 2017-07-19 10:55:00 | 2017-07-19 11:00:00 | 2018-07-13 10:31:17 |
+|    9 | 1008 |      1 |   500 | 1000 | 2017-07-12 10:55:00 | 2017-07-12 11:00:00 | 2018-07-13 10:31:58 |
+|   10 | 1009 |      2 |    50 |  100 | 2017-06-12 11:45:00 | 2017-06-12 11:50:00 | 2018-07-13 10:32:54 |
++------+------+--------+-------+------+---------------------+---------------------+---------------------+
+10 rows in set (0.00 sec)
+
+mysql> insert into gth(UID,GAMEID,STAKE,WIN,SD,ED)values(1010,2,50,100,'2017-06-19 11:45','2017-06-19 11:50'),(1011,2,150,0,'2017-06-01 11:55','2017-06-01 12:10'),(1012,1,50,100,'2017-06-20 01:45','2017-06-12 02:00'),(1013,1,75,150,'2017-06-12 10:05','2017-06-12 11:05');
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from gth;
++------+------+--------+-------+------+---------------------+---------------------+---------------------+
+| GTID | UID  | GAMEID | STAKE | WIN  | SD                  | ED                  | UPDATEDATE          |
++------+------+--------+-------+------+---------------------+---------------------+---------------------+
+|    1 | 1001 |      1 |   100 |  200 | 2018-07-12 15:24:00 | 2018-07-12 15:29:00 | 2018-07-13 09:55:30 |
+|    2 | 1002 |      2 |   200 |  400 | 2018-07-11 14:55:00 | 2018-07-11 15:00:00 | 2018-07-13 09:57:08 |
+|    3 | 1003 |      2 |   200 |    0 | 2017-07-19 14:55:00 | 2017-07-19 15:00:00 | 2018-07-13 09:58:33 |
+|    4 | 1004 |      1 |   200 |  400 | 2017-07-10 13:55:00 | 2017-07-10 14:00:00 | 2018-07-13 09:59:09 |
+|    5 | 1004 |      1 |   200 |  400 | 2017-07-09 11:55:00 | 2017-07-09 12:00:00 | 2018-07-13 09:59:48 |
+|    6 | 1005 |      1 |   200 |  400 | 2017-07-09 11:55:00 | 2017-07-09 12:00:00 | 2018-07-13 10:00:13 |
+|    7 | 1006 |      2 |   400 |  600 | 2017-07-19 10:55:00 | 2017-07-19 11:00:00 | 2018-07-13 10:01:06 |
+|    8 | 1007 |      2 |   400 |  600 | 2017-07-19 10:55:00 | 2017-07-19 11:00:00 | 2018-07-13 10:31:17 |
+|    9 | 1008 |      1 |   500 | 1000 | 2017-07-12 10:55:00 | 2017-07-12 11:00:00 | 2018-07-13 10:31:58 |
+|   10 | 1009 |      2 |    50 |  100 | 2017-06-12 11:45:00 | 2017-06-12 11:50:00 | 2018-07-13 10:32:54 |
+|   12 | 1010 |      2 |    50 |  100 | 2017-06-19 11:45:00 | 2017-06-19 11:50:00 | 2018-07-13 12:29:24 |
+|   13 | 1011 |      2 |   150 |    0 | 2017-06-01 11:55:00 | 2017-06-01 12:10:00 | 2018-07-13 12:29:24 |
+|   14 | 1012 |      1 |    50 |  100 | 2017-06-20 01:45:00 | 2017-06-12 02:00:00 | 2018-07-13 12:29:24 |
+|   15 | 1013 |      1 |    75 |  150 | 2017-06-12 10:05:00 | 2017-06-12 11:05:00 | 2018-07-13 12:29:24 |
++------+------+--------+-------+------+---------------------+---------------------+---------------------+
+14 rows in set (0.00 sec)
+
+
+
+
+
+
