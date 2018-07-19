@@ -1,0 +1,870 @@
+mysql> create database task3;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use task3;
+Database changed
+mysql> create table admin(USERID INT AUTO_INCREMENT PRIMARY KEY, NAME VARCHAR(20), EMAILID VARCHAR(20), ACCESSSTATUS BOOLEAN);
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> create table user(USERID INT,GAMEID INT,GAMENAME VARCHAR(20),SCORE INT,ACCESSSTATUS BOOLEAN, FOREIGN KEY fk_id(USERID) REFERENCES admin(USERID));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> SHOW TABLES;
++-----------------+
+| Tables_in_task3 |
++-----------------+
+| admin           |
+| user            |
++-----------------+
+2 rows in set (0.00 sec)
+
+
+
+
+mysql> insert into admin(NAME,EMAILID,ACCESSSTATUS)values('aravind','aravind54@gmail.com','true');
+Query OK, 1 row affected, 1 warning (0.00 sec)
+
+mysql> select * from admin;
++--------+---------+---------------------+--------------+
+| USERID | NAME    | EMAILID             | ACCESSSTATUS |
++--------+---------+---------------------+--------------+
+|      1 | aravind | aravind54@gmail.com |            0 |
++--------+---------+---------------------+--------------+
+1 row in set (0.00 sec)
+
+mysql> insert into admin(NAME,EMAILID,ACCESSSTATUS)values('vind','vind54@gmail.com','TRUE');
+Query OK, 1 row affected, 1 warning (0.00 sec)
+
+mysql> select * from admin;
++--------+---------+---------------------+--------------+
+| USERID | NAME    | EMAILID             | ACCESSSTATUS |
++--------+---------+---------------------+--------------+
+|      1 | aravind | aravind54@gmail.com |            0 |
+|      2 | vind    | vind54@gmail.com    |            0 |
++--------+---------+---------------------+--------------+
+2 rows in set (0.00 sec)
+
+mysql> insert into admin(NAME,EMAILID,ACCESSSTATUS)values('yasmnd','yas4@gmail.com','FALSE');
+Query OK, 1 row affected, 1 warning (0.00 sec)
+
+mysql> select * from admin;
++--------+---------+---------------------+--------------+
+| USERID | NAME    | EMAILID             | ACCESSSTATUS |
++--------+---------+---------------------+--------------+
+|      1 | aravind | aravind54@gmail.com |            0 |
+|      2 | vind    | vind54@gmail.com    |            0 |
+|      3 | yasmnd  | yas4@gmail.com      |            0 |
++--------+---------+---------------------+--------------+
+3 rows in set (0.00 sec)
+
+mysql> insert into admin(NAME,EMAILID,ACCESSSTATUS)values('yasmnd','yas4@gmail.com',fale);
+ERROR 1054 (42S22): Unknown column 'fale' in 'field list'
+mysql> insert into admin(NAME,EMAILID,ACCESSSTATUS)values('yasmnd','yas4@gmail.com',false);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from admin;
++--------+---------+---------------------+--------------+
+| USERID | NAME    | EMAILID             | ACCESSSTATUS |
++--------+---------+---------------------+--------------+
+|      1 | aravind | aravind54@gmail.com |            0 |
+|      2 | vind    | vind54@gmail.com    |            0 |
+|      3 | yasmnd  | yas4@gmail.com      |            0 |
+|      4 | yasmnd  | yas4@gmail.com      |            0 |
++--------+---------+---------------------+--------------+
+4 rows in set (0.00 sec)
+
+mysql> insert into admin(NAME,EMAILID,ACCESSSTATUS)values('yasmnd','yas4@gmail.com',TRUE);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from admin;
++--------+---------+---------------------+--------------+
+| USERID | NAME    | EMAILID             | ACCESSSTATUS |
++--------+---------+---------------------+--------------+
+|      1 | aravind | aravind54@gmail.com |            0 |
+|      2 | vind    | vind54@gmail.com    |            0 |
+|      3 | yasmnd  | yas4@gmail.com      |            0 |
+|      4 | yasmnd  | yas4@gmail.com      |            0 |
+|      5 | yasmnd  | yas4@gmail.com      |            1 |
++--------+---------+---------------------+--------------+
+5 rows in set (0.00 sec)
+
+mysql> insert into admin(NAME,EMAILID,ACCESSSTATUS)values('vicky','vick@gmail.com',FALSE);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from admin;
++--------+---------+---------------------+--------------+
+| USERID | NAME    | EMAILID             | ACCESSSTATUS |
++--------+---------+---------------------+--------------+
+|      1 | aravind | aravind54@gmail.com |            0 |
+|      2 | vind    | vind54@gmail.com    |            0 |
+|      3 | yasmnd  | yas4@gmail.com      |            0 |
+|      4 | yasmnd  | yas4@gmail.com      |            0 |
+|      5 | yasmnd  | yas4@gmail.com      |            1 |
+|      6 | vicky   | vick@gmail.com      |            0 |
++--------+---------+---------------------+--------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from user;
+Empty set (0.00 sec)
+
+mysql> insert into admin(NAME,EMAILID,ACCESSSTATUS)values('sundar','sundar@gmail.com',TRUE;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> insert into admin(NAME,EMAILID,ACCESSSTATUS)values('sundar','sundar@gmail.com',TRUE);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from admin;
++--------+---------+---------------------+--------------+
+| USERID | NAME    | EMAILID             | ACCESSSTATUS |
++--------+---------+---------------------+--------------+
+|      1 | aravind | aravind54@gmail.com |            0 |
+|      2 | vind    | vind54@gmail.com    |            0 |
+|      3 | yasmnd  | yas4@gmail.com      |            0 |
+|      4 | yasmnd  | yas4@gmail.com      |            0 |
+|      5 | yasmnd  | yas4@gmail.com      |            1 |
+|      6 | vicky   | vick@gmail.com      |            0 |
+|      7 | sundar  | sundar@gmail.com    |            1 |
++--------+---------+---------------------+--------------+
+7 rows in set (0.00 sec)
+
+mysql> update admin SET ACCESSSTATUS=TRUE where USERID in(1,2,6); 
+Query OK, 3 rows affected (0.00 sec)
+Rows matched: 3  Changed: 3  Warnings: 0
+
+mysql> select * from admin;
++--------+---------+---------------------+--------------+
+| USERID | NAME    | EMAILID             | ACCESSSTATUS |
++--------+---------+---------------------+--------------+
+|      1 | aravind | aravind54@gmail.com |            1 |
+|      2 | vind    | vind54@gmail.com    |            1 |
+|      3 | yasmnd  | yas4@gmail.com      |            0 |
+|      4 | yasmnd  | yas4@gmail.com      |            0 |
+|      5 | yasmnd  | yas4@gmail.com      |            1 |
+|      6 | vicky   | vick@gmail.com      |            1 |
+|      7 | sundar  | sundar@gmail.com    |            1 |
++--------+---------+---------------------+--------------+
+7 rows in set (0.00 sec)
+
+mysql> insert into admin(NAME,EMAILID,ACCESSSTATUS)values('karthi','kr@yahoomail.com',TRUE),('parthi','pr@yahoomail.com',TRUE),('raja','rj@yahoomail.com', FALSE),('sibi','sb@gmail.com',TRUE),('vino','vn@gmail.com',FALSE);
+Query OK, 5 rows affected (0.00 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from admin;
++--------+---------+---------------------+--------------+
+| USERID | NAME    | EMAILID             | ACCESSSTATUS |
++--------+---------+---------------------+--------------+
+|      1 | aravind | aravind54@gmail.com |            1 |
+|      2 | vind    | vind54@gmail.com    |            1 |
+|      3 | yasmnd  | yas4@gmail.com      |            0 |
+|      4 | yasmnd  | yas4@gmail.com      |            0 |
+|      5 | yasmnd  | yas4@gmail.com      |            1 |
+|      6 | vicky   | vick@gmail.com      |            1 |
+|      7 | sundar  | sundar@gmail.com    |            1 |
+|      8 | karthi  | kr@yahoomail.com    |            1 |
+|      9 | parthi  | pr@yahoomail.com    |            1 |
+|     10 | raja    | rj@yahoomail.com    |            0 |
+|     11 | sibi    | sb@gmail.com        |            1 |
+|     12 | vino    | vn@gmail.com        |            0 |
++--------+---------+---------------------+--------------+
+12 rows in set (0.00 sec)
+
+mysql> insert into admin(NAME,EMAILID,ACCESSSTATUS)values('krithi','krithi@yahoomail.com',TRUE),('prathya','prathya@yahoomail.com',FALSE),('manoj','mj@yahoomail.com', FALSE),('mani','mani@gmail.com',TRUE),('tarik','tk@gmail.com',FALSE);
+Query OK, 5 rows affected, 1 warning (0.00 sec)
+Records: 5  Duplicates: 0  Warnings: 1
+
+mysql> select * from admin;
++--------+---------+----------------------+--------------+
+| USERID | NAME    | EMAILID              | ACCESSSTATUS |
++--------+---------+----------------------+--------------+
+|      1 | aravind | aravind54@gmail.com  |            1 |
+|      2 | vind    | vind54@gmail.com     |            1 |
+|      3 | yasmnd  | yas4@gmail.com       |            0 |
+|      4 | yasmnd  | yas4@gmail.com       |            0 |
+|      5 | yasmnd  | yas4@gmail.com       |            1 |
+|      6 | vicky   | vick@gmail.com       |            1 |
+|      7 | sundar  | sundar@gmail.com     |            1 |
+|      8 | karthi  | kr@yahoomail.com     |            1 |
+|      9 | parthi  | pr@yahoomail.com     |            1 |
+|     10 | raja    | rj@yahoomail.com     |            0 |
+|     11 | sibi    | sb@gmail.com         |            1 |
+|     12 | vino    | vn@gmail.com         |            0 |
+|     13 | krithi  | krithi@yahoomail.com |            1 |
+|     14 | prathya | prathya@yahoomail.co |            0 |
+|     15 | manoj   | mj@yahoomail.com     |            0 |
+|     16 | mani    | mani@gmail.com       |            1 |
+|     17 | tarik   | tk@gmail.com         |            0 |
++--------+---------+----------------------+--------------+
+17 rows in set (0.00 sec)
+
+mysql> insert into admin(NAME,EMAILID,ACCESSSTATUS)values('prithi','prithi@yahoomail.com',TRUE),('sathya','sathya@yahoomail.com',FALSE),('vincy','vincy@yahoomail.com', FALSE),('vani','vani@gmail.com',TRUE),('sarik','sk@gmail.com',FALSE);
+Query OK, 5 rows affected (0.00 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from admin;
++--------+---------+----------------------+--------------+
+| USERID | NAME    | EMAILID              | ACCESSSTATUS |
++--------+---------+----------------------+--------------+
+|      1 | aravind | aravind54@gmail.com  |            1 |
+|      2 | vind    | vind54@gmail.com     |            1 |
+|      3 | yasmnd  | yas4@gmail.com       |            0 |
+|      4 | yasmnd  | yas4@gmail.com       |            0 |
+|      5 | yasmnd  | yas4@gmail.com       |            1 |
+|      6 | vicky   | vick@gmail.com       |            1 |
+|      7 | sundar  | sundar@gmail.com     |            1 |
+|      8 | karthi  | kr@yahoomail.com     |            1 |
+|      9 | parthi  | pr@yahoomail.com     |            1 |
+|     10 | raja    | rj@yahoomail.com     |            0 |
+|     11 | sibi    | sb@gmail.com         |            1 |
+|     12 | vino    | vn@gmail.com         |            0 |
+|     13 | krithi  | krithi@yahoomail.com |            1 |
+|     14 | prathya | prathya@yahoomail.co |            0 |
+|     15 | manoj   | mj@yahoomail.com     |            0 |
+|     16 | mani    | mani@gmail.com       |            1 |
+|     17 | tarik   | tk@gmail.com         |            0 |
+|     18 | prithi  | prithi@yahoomail.com |            1 |
+|     19 | sathya  | sathya@yahoomail.com |            0 |
+|     20 | vincy   | vincy@yahoomail.com  |            0 |
+|     21 | vani    | vani@gmail.com       |            1 |
+|     22 | sarik   | sk@gmail.com         |            0 |
++--------+---------+----------------------+--------------+
+22 rows in set (0.00 sec)
+
+mysql> desc user;          
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| USERID       | int(11)     | YES  | MUL | NULL    |       |
+| GAMEID       | int(11)     | YES  |     | NULL    |       |
+| GAMENAME     | varchar(20) | YES  |     | NULL    |       |
+| SCORE        | int(11)     | YES  |     | NULL    |       |
+| ACCESSSTATUS | tinyint(1)  | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> Alter table user modify GAMEID int not null auto_increment;           
+ERROR 1075 (42000): Incorrect table definition; there can be only one auto column and it must be defined as a key
+mysql> Alter table user modify GAMEID int not null auto_increment primary key;
+Query OK, 0 rows affected (0.00 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table user alter column GAMEID SET DEFAULT 1001;
+Query OK, 0 rows affected (0.00 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc user;
++--------------+-------------+------+-----+---------+----------------+
+| Field        | Type        | Null | Key | Default | Extra          |
++--------------+-------------+------+-----+---------+----------------+
+| USERID       | int(11)     | YES  | MUL | NULL    |                |
+| GAMEID       | int(11)     | NO   | PRI | NULL    | auto_increment |
+| GAMENAME     | varchar(20) | YES  |     | NULL    |                |
+| SCORE        | int(11)     | YES  |     | NULL    |                |
+| ACCESSSTATUS | tinyint(1)  | YES  |     | NULL    |                |
++--------------+-------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> mysql> insert into user(USERID,GAMEID,GAMENAME,SCORE,ACCESSSTATUS)values(1, 
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'mysql> insert into user(USERID,GAMEID,GAMENAME,SCORE,ACCESSSTATUS)values(1,' at line 1
+mysql> insert into user(USERID,GAMENAME,SCORE,ACCESSSTATUS)values(1,'rummy',500,TRUE);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SLECT * FROMuser;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SLECT * FROMuser' at line 1
+mysql> SELECT * FROM user;
++--------+--------+----------+-------+--------------+
+| USERID | GAMEID | GAMENAME | SCORE | ACCESSSTATUS |
++--------+--------+----------+-------+--------------+
+|      1 |   1001 | rummy    |   500 |            1 |
++--------+--------+----------+-------+--------------+
+1 row in set (0.00 sec)
+
+
+
+
+mysql> SELECT * FROM user;
++--------+--------+----------+-------+--------------+
+| USERID | GAMEID | GAMENAME | SCORE | ACCESSSTATUS |
++--------+--------+----------+-------+--------------+
+|      1 |   1001 | rummy    |   500 |            1 |
+|      3 |      0 | rummy    |   600 |            1 |
+|      3 |   1002 | rummy    |   600 |            1 |
+|      2 |   1003 | poker    |     0 |            0 |
++--------+--------+----------+-------+--------------+
+4 rows in set (0.00 sec)
+
+
+
+mysql> insert into user(USERID,GAMEID,GAMENAME,SCORE,ACCESSSTATUS)values(5,1009,'rummy',600,TRUE),(10,1008,'poker',0,FALSE),(7,1011,'poker',300,TRUE),(8,1012,'poker',200,TRUE);
+Query OK, 4 rows affected (0.00 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM user;
++--------+--------+----------+-------+--------------+
+| USERID | GAMEID | GAMENAME | SCORE | ACCESSSTATUS |
++--------+--------+----------+-------+--------------+
+|      1 |   1001 | rummy    |   500 |            1 |
+|      3 |   1006 | rummy    |   600 |            1 |
+|      3 |   1002 | rummy    |   600 |            1 |
+|      2 |   1003 | poker    |     0 |            0 |
+|      5 |   1009 | rummy    |   600 |            1 |
+|     10 |   1008 | poker    |     0 |            0 |
+|      7 |   1011 | poker    |   300 |            1 |
+|      8 |   1012 | poker    |   200 |            1 |
++--------+--------+----------+-------+--------------+
+8 rows in set (0.00 sec)
+
+mysql> insert into user(USERID,GAMEID,GAMENAME,SCORE,ACCESSSTATUS)values(15,1019,'rummypassion',600,TRUE),(20,1028,'skill4win',0,FALSE),(21,1211,'poker',300,TRUE),(18,1022,'skill4win',200,TRUE);
+Query OK, 4 rows affected (0.00 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM user;
++--------+--------+--------------+-------+--------------+
+| USERID | GAMEID | GAMENAME     | SCORE | ACCESSSTATUS |
++--------+--------+--------------+-------+--------------+
+|      1 |   1001 | rummy        |   500 |            1 |
+|      3 |   1006 | rummy        |   600 |            1 |
+|      3 |   1002 | rummy        |   600 |            1 |
+|      2 |   1003 | poker        |     0 |            0 |
+|      5 |   1009 | rummy        |   600 |            1 |
+|     10 |   1008 | poker        |     0 |            0 |
+|      7 |   1011 | poker        |   300 |            1 |
+|      8 |   1012 | poker        |   200 |            1 |
+|     15 |   1019 | rummypassion |   600 |            1 |
+|     20 |   1028 | skill4win    |     0 |            0 |
+|     21 |   1211 | poker        |   300 |            1 |
+|     18 |   1022 | skill4win    |   200 |            1 |
++--------+--------+--------------+-------+--------------+
+12 rows in set (0.00 sec)
+
+
+
+mysql> SELECT * FROM user;
++--------+--------+--------------+-------+--------------+
+| USERID | GAMEID | GAMENAME     | SCORE | ACCESSSTATUS |
++--------+--------+--------------+-------+--------------+
+|      1 |   1001 | rummy        |   500 |            1 |
+|      3 |   1006 | rummy        |   600 |            1 |
+|      3 |   1002 | rummy        |   600 |            1 |
+|      2 |   1003 | poker        |     0 |            0 |
+|      5 |   1009 | rummy        |   600 |            1 |
+|     10 |   1008 | poker        |     0 |            0 |
+|      7 |   1011 | poker        |   300 |            1 |
+|      8 |   1012 | poker        |   200 |            1 |
+|     15 |   1019 | rummypassion |   600 |            1 |
+|     20 |   1028 | skill4win    |     0 |            0 |
+|     21 |   1211 | poker        |   300 |            1 |
+|     18 |   1022 | skill4win    |   200 |            1 |
+|     25 |   1029 | rummypassion |   800 |            1 |
+|     14 |   1023 | skill4win    |     0 |            0 |
+|     17 |   1212 | khelo jeeto  |  1000 |            1 |
+|     25 |   1039 | rummypassion |   800 |            1 |
+|     25 |   1030 | rummypassion |   800 |            1 |
+|     14 |   1033 | skill4win    |     0 |            0 |
+|     25 |   1016 | rummypassion |   800 |            1 |
++--------+--------+--------------+-------+--------------+
+19 rows in set (0.00 sec)
+
+mysql> SELECT * FROM admin;
++--------+---------+----------------------+--------------+
+| USERID | NAME    | EMAILID              | ACCESSSTATUS |
++--------+---------+----------------------+--------------+
+|      1 | aravind | aravind54@gmail.com  |            1 |
+|      2 | vind    | vind54@gmail.com     |            1 |
+|      3 | yasmnd  | yas4@gmail.com       |            0 |
+|      4 | yasmnd  | yas4@gmail.com       |            0 |
+|      5 | yasmnd  | yas4@gmail.com       |            1 |
+|      6 | vicky   | vick@gmail.com       |            1 |
+|      7 | sundar  | sundar@gmail.com     |            1 |
+|      8 | karthi  | kr@yahoomail.com     |            1 |
+|      9 | parthi  | pr@yahoomail.com     |            1 |
+|     10 | raja    | rj@yahoomail.com     |            0 |
+|     11 | sibi    | sb@gmail.com         |            1 |
+|     12 | vino    | vn@gmail.com         |            0 |
+|     13 | krithi  | krithi@yahoomail.com |            1 |
+|     14 | prathya | prathya@yahoomail.co |            0 |
+|     15 | manoj   | mj@yahoomail.com     |            0 |
+|     16 | mani    | mani@gmail.com       |            1 |
+|     17 | tarik   | tk@gmail.com         |            0 |
+|     18 | prithi  | prithi@yahoomail.com |            1 |
+|     19 | sathya  | sathya@yahoomail.com |            0 |
+|     20 | vincy   | vincy@yahoomail.com  |            0 |
+|     21 | vani    | vani@gmail.com       |            1 |
+|     22 | sarik   | sk@gmail.com         |            0 |
++--------+---------+------
+
+
+
+mysql> SELECT * FROM user;
++--------+--------+--------------+-------+--------------+
+| USERID | GAMEID | GAMENAME     | SCORE | ACCESSSTATUS |
++--------+--------+--------------+-------+--------------+
+|      1 |   1001 | rummy        |   500 |            1 |
+|      3 |   1006 | rummy        |   600 |            1 |
+|      3 |   1002 | rummy        |   600 |            1 |
+|      2 |   1003 | poker        |     0 |            0 |
+|      5 |   1009 | rummy        |   600 |            1 |
+|     10 |   1008 | poker        |     0 |            0 |
+|      7 |   1011 | poker        |   300 |            1 |
+|      8 |   1012 | poker        |   200 |            1 |
+|     15 |   1019 | rummypassion |   600 |            1 |
+|     20 |   1028 | skill4win    |     0 |            0 |
+|     21 |   1211 | poker        |   300 |            1 |
+|     18 |   1022 | skill4win    |   200 |            1 |
+|     25 |   1029 | rummypassion |   800 |            1 |
+|     14 |   1023 | skill4win    |     0 |            0 |
+|     17 |   1212 | khelo jeeto  |  1000 |            1 |
+|     25 |   1039 | rummypassion |   800 |            1 |
+|     25 |   1030 | rummypassion |   800 |            1 |
+|     14 |   1033 | skill4win    |     0 |            0 |
+|     25 |   1016 | rummypassion |   800 |            1 |
++--------+--------+--------------+-------+--------------+
+19 rows in set (0.00 sec)
+
+mysql> SELECT * FROM admin;
++--------+---------+----------------------+--------------+
+| USERID | NAME    | EMAILID              | ACCESSSTATUS |
++--------+---------+----------------------+--------------+
+|      1 | aravind | aravind54@gmail.com  |            1 |
+|      2 | vind    | vind54@gmail.com     |            1 |
+|      3 | yasmnd  | yas4@gmail.com       |            0 |
+|      4 | yasmnd  | yas4@gmail.com       |            0 |
+|      5 | yasmnd  | yas4@gmail.com       |            1 |
+|      6 | vicky   | vick@gmail.com       |            1 |
+|      7 | sundar  | sundar@gmail.com     |            1 |
+|      8 | karthi  | kr@yahoomail.com     |            1 |
+|      9 | parthi  | pr@yahoomail.com     |            1 |
+|     10 | raja    | rj@yahoomail.com     |            0 |
+|     11 | sibi    | sb@gmail.com         |            1 |
+|     12 | vino    | vn@gmail.com         |            0 |
+|     13 | krithi  | krithi@yahoomail.com |            1 |
+|     14 | prathya | prathya@yahoomail.co |            0 |
+|     15 | manoj   | mj@yahoomail.com     |            0 |
+|     16 | mani    | mani@gmail.com       |            1 |
+|     17 | tarik   | tk@gmail.com         |            0 |
+|     18 | prithi  | prithi@yahoomail.com |            1 |
+|     19 | sathya  | sathya@yahoomail.com |            0 |
+|     20 | vincy   | vincy@yahoomail.com  |            0 |
+|     21 | vani    | vani@gmail.com       |            1 |
+|     22 | sarik   | sk@gmail.com         |            0 |
++--------+---------+----------------------+--------------+
+22 rows in set (0.00 sec)
+
+mysql> SELECT * FROM user;
++--------+--------+--------------+-------+--------------+
+| USERID | GAMEID | GAMENAME     | SCORE | ACCESSSTATUS |
++--------+--------+--------------+-------+--------------+
+|      1 |   1001 | rummy        |   500 |            1 |
+|      3 |   1006 | rummy        |   600 |            1 |
+|      3 |   1002 | rummy        |   600 |            1 |
+|      2 |   1003 | poker        |     0 |            0 |
+|      5 |   1009 | rummy        |   600 |            1 |
+|     10 |   1008 | poker        |     0 |            0 |
+|      7 |   1011 | poker        |   300 |            1 |
+|      8 |   1012 | poker        |   200 |            1 |
+|     15 |   1019 | rummypassion |   600 |            1 |
+|     20 |   1028 | skill4win    |     0 |            0 |
+|     21 |   1211 | poker        |   300 |            1 |
+|     18 |   1022 | skill4win    |   200 |            1 |
+|     25 |   1029 | rummypassion |   800 |            1 |
+|     14 |   1023 | skill4win    |     0 |            0 |
+|     17 |   1212 | khelo jeeto  |  1000 |            1 |
+|     25 |   1039 | rummypassion |   800 |            1 |
+|     25 |   1030 | rummypassion |   800 |            1 |
+|     14 |   1033 | skill4win    |     0 |            0 |
+|     25 |   1016 | rummypassion |   800 |            1 |
++--------+--------+--------------+-------+--------------+
+19 rows in set (0.00 sec)
+
+mysql> select USERID from admin union select USERID from user;;
++--------+
+| USERID |
++--------+
+|      1 |
+|      2 |
+|      3 |
+|      4 |
+|      5 |
+|      6 |
+|      7 |
+|      8 |
+|      9 |
+|     10 |
+|     11 |
+|     12 |
+|     13 |
+|     14 |
+|     15 |
+|     16 |
+|     17 |
+|     18 |
+|     19 |
+|     20 |
+|     21 |
+|     22 |
+|     25 |
++--------+
+23 rows in set (0.00 sec)
+
+ERROR: 
+No query specified
+
+mysql> select USERID from admin union select USERID from user; 
++--------+
+| USERID |
++--------+
+|      1 |
+|      2 |
+|      3 |
+|      4 |
+|      5 |
+|      6 |
+|      7 |
+|      8 |
+|      9 |
+|     10 |
+|     11 |
+|     12 |
+|     13 |
+|     14 |
+|     15 |
+|     16 |
+|     17 |
+|     18 |
+|     19 |
+|     20 |
+|     21 |
+|     22 |
+|     25 |
++--------+
+23 rows in set (0.00 sec)
+
+mysql> select USERID from admin union all select USERID from user;
++--------+
+| USERID |
++--------+
+|      1 |
+|      2 |
+|      3 |
+|      4 |
+|      5 |
+|      6 |
+|      7 |
+|      8 |
+|      9 |
+|     10 |
+|     11 |
+|     12 |
+|     13 |
+|     14 |
+|     15 |
+|     16 |
+|     17 |
+|     18 |
+|     19 |
+|     20 |
+|     21 |
+|     22 |
+|      1 |
+|      2 |
+|      3 |
+|      3 |
+|      5 |
+|      7 |
+|      8 |
+|     10 |
+|     14 |
+|     14 |
+|     15 |
+|     17 |
+|     18 |
+|     20 |
+|     21 |
+|     25 |
+|     25 |
+|     25 |
+|     25 |
++--------+
+41 rows in set (0.00 sec)
+
+mysql> select USERID from admin where USERID in(select USERID from user);
++--------+
+| USERID |
++--------+
+|      1 |
+|      2 |
+|      3 |
+|      5 |
+|      7 |
+|      8 |
+|     10 |
+|     14 |
+|     15 |
+|     17 |
+|     18 |
+|     20 |
+|     21 |
++--------+
+13 rows in set (0.00 sec)
+
+mysql> select USERID from admin where USERID not in(select USERID from user);
++--------+
+| USERID |
++--------+
+|      4 |
+|      6 |
+|      9 |
+|     11 |
+|     12 |
+|     13 |
+|     16 |
+|     19 |
+|     22 |
++--------+
+9 rows in set (0.00 sec)
+
+mysql> SELECT * FROM user;
++--------+--------+--------------+-------+--------------+
+| USERID | GAMEID | GAMENAME     | SCORE | ACCESSSTATUS |
++--------+--------+--------------+-------+--------------+
+|      1 |   1001 | rummy        |   500 |            1 |
+|      3 |   1006 | rummy        |   600 |            1 |
+|      3 |   1002 | rummy        |   600 |            1 |
+|      2 |   1003 | poker        |     0 |            0 |
+|      5 |   1009 | rummy        |   600 |            1 |
+|     10 |   1008 | poker        |     0 |            0 |
+|      7 |   1011 | poker        |   300 |            1 |
+|      8 |   1012 | poker        |   200 |            1 |
+|     15 |   1019 | rummypassion |   600 |            1 |
+|     20 |   1028 | skill4win    |     0 |            0 |
+|     21 |   1211 | poker        |   300 |            1 |
+|     18 |   1022 | skill4win    |   200 |            1 |
+|     25 |   1029 | rummypassion |   800 |            1 |
+|     14 |   1023 | skill4win    |     0 |            0 |
+|     17 |   1212 | khelo jeeto  |  1000 |            1 |
+|     25 |   1039 | rummypassion |   800 |            1 |
+|     25 |   1030 | rummypassion |   800 |            1 |
+|     14 |   1033 | skill4win    |     0 |            0 |
+|     25 |   1016 | rummypassion |   800 |            1 |
++--------+--------+--------------+-------+--------------+
+19 rows in set (0.00 sec)
+
+mysql> SELECT * FROM admin;
++--------+---------+----------------------+--------------+
+| USERID | NAME    | EMAILID              | ACCESSSTATUS |
++--------+---------+----------------------+--------------+
+|      1 | aravind | aravind54@gmail.com  |            1 |
+|      2 | vind    | vind54@gmail.com     |            1 |
+|      3 | yasmnd  | yas4@gmail.com       |            0 |
+|      4 | yasmnd  | yas4@gmail.com       |            0 |
+|      5 | yasmnd  | yas4@gmail.com       |            1 |
+|      6 | vicky   | vick@gmail.com       |            1 |
+|      7 | sundar  | sundar@gmail.com     |            1 |
+|      8 | karthi  | kr@yahoomail.com     |            1 |
+|      9 | parthi  | pr@yahoomail.com     |            1 |
+|     10 | raja    | rj@yahoomail.com     |            0 |
+|     11 | sibi    | sb@gmail.com         |            1 |
+|     12 | vino    | vn@gmail.com         |            0 |
+|     13 | krithi  | krithi@yahoomail.com |            1 |
+|     14 | prathya | prathya@yahoomail.co |            0 |
+|     15 | manoj   | mj@yahoomail.com     |            0 |
+|     16 | mani    | mani@gmail.com       |            1 |
+|     17 | tarik   | tk@gmail.com         |            0 |
+|     18 | prithi  | prithi@yahoomail.com |            1 |
+|     19 | sathya  | sathya@yahoomail.com |            0 |
+|     20 | vincy   | vincy@yahoomail.com  |            0 |
+|     21 | vani    | vani@gmail.com       |            1 |
+|     22 | sarik   | sk@gmail.com         |            0 |
++--------+---------+----------------------+--------------+
+22 rows in set (0.00 sec)
+
+mysql> select count(*) from user;
++----------+
+| count(*) |
++----------+
+|       19 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select count(*) from admin;
++----------+
+| count(*) |
++----------+
+|       22 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select count(*), sum(NAME),avg(ACCESSSTATUS) from admin;
++----------+-----------+-------------------+
+| count(*) | sum(NAME) | avg(ACCESSSTATUS) |
++----------+-----------+-------------------+
+|       22 |         0 |            0.5455 |
++----------+-----------+-------------------+
+1 row in set (0.00 sec)
+
+mysql> select count(*), sum(USERID),avg(ACCESSSTATUS) from admin;
++----------+-------------+-------------------+
+| count(*) | sum(USERID) | avg(ACCESSSTATUS) |
++----------+-------------+-------------------+
+|       22 |         253 |            0.5455 |
++----------+-------------+-------------------+
+1 row in set (0.00 sec)
+
+mysql> select count(*), max(GAMENAME),min(SCORE) from user;
++----------+---------------+------------+
+| count(*) | max(GAMENAME) | min(SCORE) |
++----------+---------------+------------+
+|       19 | skill4win     |          0 |
++----------+---------------+------------+
+1 row in set (0.00 sec)
+
+mysql> select count(*), max(GAMENAME),max(SCORE) from user;
++----------+---------------+------------+
+| count(*) | max(GAMENAME) | max(SCORE) |
++----------+---------------+------------+
+|       19 | skill4win     |       1000 |
++----------+---------------+------------+
+1 row in set (0.00 sec)
+
+mysql> select * from user orderby SCORE;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SCORE' at line 1
+mysql> select * from user order by SCORE;
++--------+--------+--------------+-------+--------------+
+| USERID | GAMEID | GAMENAME     | SCORE | ACCESSSTATUS |
++--------+--------+--------------+-------+--------------+
+|     20 |   1028 | skill4win    |     0 |            0 |
+|     14 |   1033 | skill4win    |     0 |            0 |
+|     14 |   1023 | skill4win    |     0 |            0 |
+|      2 |   1003 | poker        |     0 |            0 |
+|     10 |   1008 | poker        |     0 |            0 |
+|     18 |   1022 | skill4win    |   200 |            1 |
+|      8 |   1012 | poker        |   200 |            1 |
+|      7 |   1011 | poker        |   300 |            1 |
+|     21 |   1211 | poker        |   300 |            1 |
+|      1 |   1001 | rummy        |   500 |            1 |
+|     15 |   1019 | rummypassion |   600 |            1 |
+|      5 |   1009 | rummy        |   600 |            1 |
+|      3 |   1002 | rummy        |   600 |            1 |
+|      3 |   1006 | rummy        |   600 |            1 |
+|     25 |   1029 | rummypassion |   800 |            1 |
+|     25 |   1039 | rummypassion |   800 |            1 |
+|     25 |   1030 | rummypassion |   800 |            1 |
+|     25 |   1016 | rummypassion |   800 |            1 |
+|     17 |   1212 | khelo jeeto  |  1000 |            1 |
++--------+--------+--------------+-------+--------------+
+19 rows in set (0.00 sec)
+
+mysql> select * from user order by SCORE DESC;
++--------+--------+--------------+-------+--------------+
+| USERID | GAMEID | GAMENAME     | SCORE | ACCESSSTATUS |
++--------+--------+--------------+-------+--------------+
+|     17 |   1212 | khelo jeeto  |  1000 |            1 |
+|     25 |   1016 | rummypassion |   800 |            1 |
+|     25 |   1030 | rummypassion |   800 |            1 |
+|     25 |   1039 | rummypassion |   800 |            1 |
+|     25 |   1029 | rummypassion |   800 |            1 |
+|      3 |   1006 | rummy        |   600 |            1 |
+|      3 |   1002 | rummy        |   600 |            1 |
+|      5 |   1009 | rummy        |   600 |            1 |
+|     15 |   1019 | rummypassion |   600 |            1 |
+|      1 |   1001 | rummy        |   500 |            1 |
+|     21 |   1211 | poker        |   300 |            1 |
+|      7 |   1011 | poker        |   300 |            1 |
+|     18 |   1022 | skill4win    |   200 |            1 |
+|      8 |   1012 | poker        |   200 |            1 |
+|     14 |   1023 | skill4win    |     0 |            0 |
+|     10 |   1008 | poker        |     0 |            0 |
+|      2 |   1003 | poker        |     0 |            0 |
+|     14 |   1033 | skill4win    |     0 |            0 |
+|     20 |   1028 | skill4win    |     0 |            0 |
++--------+--------+--------------+-------+--------------+
+19 rows in set (0.00 sec)
+
+mysql> select count(*) from user group by GAMENAME having ACCESSSTATUS=1;
+ERROR 1054 (42S22): Unknown column 'ACCESSSTATUS' in 'having clause'
+mysql> select * from user group by GAMENAME having ACCESSSTATUS=1;
++--------+--------+--------------+-------+--------------+
+| USERID | GAMEID | GAMENAME     | SCORE | ACCESSSTATUS |
++--------+--------+--------------+-------+--------------+
+|     17 |   1212 | khelo jeeto  |  1000 |            1 |
+|      1 |   1001 | rummy        |   500 |            1 |
+|     15 |   1019 | rummypassion |   600 |            1 |
++--------+--------+--------------+-------+--------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from user LIMIT 5;
++--------+--------+----------+-------+--------------+
+| USERID | GAMEID | GAMENAME | SCORE | ACCESSSTATUS |
++--------+--------+----------+-------+--------------+
+|      1 |   1001 | rummy    |   500 |            1 |
+|      3 |   1006 | rummy    |   600 |            1 |
+|      3 |   1002 | rummy    |   600 |            1 |
+|      2 |   1003 | poker    |     0 |            0 |
+|      5 |   1009 | rummy    |   600 |            1 |
++--------+--------+----------+-------+--------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from user where ACCESSSTATUS is NULL;
+Empty set (0.00 sec)
+
+mysql> select * from user where ACCESSSTATUS is NOT NULL;
++--------+--------+--------------+-------+--------------+
+| USERID | GAMEID | GAMENAME     | SCORE | ACCESSSTATUS |
++--------+--------+--------------+-------+--------------+
+|      1 |   1001 | rummy        |   500 |            1 |
+|      3 |   1006 | rummy        |   600 |            1 |
+|      3 |   1002 | rummy        |   600 |            1 |
+|      2 |   1003 | poker        |     0 |            0 |
+|      5 |   1009 | rummy        |   600 |            1 |
+|     10 |   1008 | poker        |     0 |            0 |
+|      7 |   1011 | poker        |   300 |            1 |
+|      8 |   1012 | poker        |   200 |            1 |
+|     15 |   1019 | rummypassion |   600 |            1 |
+|     20 |   1028 | skill4win    |     0 |            0 |
+|     21 |   1211 | poker        |   300 |            1 |
+|     18 |   1022 | skill4win    |   200 |            1 |
+|     25 |   1029 | rummypassion |   800 |            1 |
+|     14 |   1023 | skill4win    |     0 |            0 |
+|     17 |   1212 | khelo jeeto  |  1000 |            1 |
+|     25 |   1039 | rummypassion |   800 |            1 |
+|     25 |   1030 | rummypassion |   800 |            1 |
+|     14 |   1033 | skill4win    |     0 |            0 |
+|     25 |   1016 | rummypassion |   800 |            1 |
++--------+--------+--------------+-------+--------------+
+19 rows in set (0.00 sec)
+
+mysql> select GAMENAME from user where GAMENAME like 'r%';
++--------------+
+| GAMENAME     |
++--------------+
+| rummy        |
+| rummy        |
+| rummy        |
+| rummy        |
+| rummypassion |
+| rummypassion |
+| rummypassion |
+| rummypassion |
+| rummypassion |
++--------------+
+9 rows in set (0.00 sec)
+
+mysql> select GAMENAME from user where GAMENAME like '%r%';
++--------------+
+| GAMENAME     |
++--------------+
+| rummy        |
+| rummy        |
+| rummy        |
+| poker        |
+| rummy        |
+| poker        |
+| poker        |
+| poker        |
+| rummypassion |
+| poker        |
+| rummypassion |
+| rummypassion |
+| rummypassion |
+| rummypassion |
++--------------+
+14 rows in set (0.00 sec)
