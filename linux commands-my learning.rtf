@@ -1,0 +1,211 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf400
+{\fonttbl\f0\froman\fcharset0 Times-Roman;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red255\green255\blue255;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;\cssrgb\c100000\c100000\c100000;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww20940\viewh8400\viewkind0
+\pard\tx577\tx1155\tx1733\tx2311\tx2889\tx3467\tx4045\tx4623\tx5201\tx5779\tx6357\tx6935\tx7513\tx8091\tx8669\tx9247\tx9825\tx10403\tx10981\tx11559\tx12137\tx12715\tx13293\tx13871\tx14449\tx15027\tx15605\tx16183\tx16761\tx17339\tx17917\tx18495\tx19072\tx19650\tx20228\tx20806\tx21384\tx21962\tx22540\tx23118\tx23696\tx24274\tx24852\tx25430\tx26008\tx26586\tx27164\tx27742\tx28320\tx28898\tx29476\tx30054\tx30632\tx31210\tx31788\tx32366\tx32944\tx33522\tx34100\tx34678\tx35256\tx35834\tx36412\tx36990\tx37567\tx38145\tx38723\tx39301\tx39879\tx40457\tx41035\tx41613\tx42191\tx42769\tx43347\tx43925\tx44503\tx45081\tx45659\tx46237\tx46815\tx47393\tx47971\tx48549\tx49127\tx49705\tx50283\tx50861\tx51439\tx52017\tx52595\tx53173\tx53751\tx54329\tx54907\tx55485\tx56062\tx56640\tx57218\tx57796\li577\fi-578\pardirnatural\partightenfactor0
+
+\f0\b\fs36 \cf2 \cb3 \CocoaLigature0 listing files and directories\
+
+\b0 \
+ls\
+ls -R\
+ls -al\
+ls -l\
+ls -dl filename\
+\
+\
+
+\b creating and viewing files\
+
+\b0 \
+cat > filename\
+-----\
+ctrl+d\
+\
+cat filename\
+\
+cat f1 f2 > newfile   [only for text file]\
+\pard\tx577\tx1155\tx1733\tx2311\tx2889\tx3467\tx4045\tx4623\tx5201\tx5779\tx6357\tx6935\tx7513\tx8091\tx8669\tx9247\tx9825\tx10403\tx10981\tx11559\tx12137\tx12715\tx13293\tx13871\tx14449\tx15027\tx15605\tx16183\tx16761\tx17339\tx17917\tx18495\tx19072\tx19650\tx20228\tx20806\tx21384\tx21962\tx22540\tx23118\tx23696\tx24274\tx24852\tx25430\tx26008\tx26586\tx27164\tx27742\tx28320\tx28898\tx29476\tx30054\tx30632\tx31210\tx31788\tx32366\tx32944\tx33522\tx34100\tx34678\tx35256\tx35834\tx36412\tx36990\tx37567\tx38145\tx38723\tx39301\tx39879\tx40457\tx41035\tx41613\tx42191\tx42769\tx43347\tx43925\tx44503\tx45081\tx45659\tx46237\tx46815\tx47393\tx47971\tx48549\tx49127\tx49705\tx50283\tx50861\tx51439\tx52017\tx52595\tx53173\tx53751\tx54329\tx54907\tx55485\tx56062\tx56640\tx57218\tx57796\li722\fi-723\pardirnatural\partightenfactor0
+\cf2  \
+\pard\tx577\tx1155\tx1733\tx2311\tx2889\tx3467\tx4045\tx4623\tx5201\tx5779\tx6357\tx6935\tx7513\tx8091\tx8669\tx9247\tx9825\tx10403\tx10981\tx11559\tx12137\tx12715\tx13293\tx13871\tx14449\tx15027\tx15605\tx16183\tx16761\tx17339\tx17917\tx18495\tx19072\tx19650\tx20228\tx20806\tx21384\tx21962\tx22540\tx23118\tx23696\tx24274\tx24852\tx25430\tx26008\tx26586\tx27164\tx27742\tx28320\tx28898\tx29476\tx30054\tx30632\tx31210\tx31788\tx32366\tx32944\tx33522\tx34100\tx34678\tx35256\tx35834\tx36412\tx36990\tx37567\tx38145\tx38723\tx39301\tx39879\tx40457\tx41035\tx41613\tx42191\tx42769\tx43347\tx43925\tx44503\tx45081\tx45659\tx46237\tx46815\tx47393\tx47971\tx48549\tx49127\tx49705\tx50283\tx50861\tx51439\tx52017\tx52595\tx53173\tx53751\tx54329\tx54907\tx55485\tx56062\tx56640\tx57218\tx57796\li577\fi-578\pardirnatural\partightenfactor0
+\cf2 cat newfile\
+\
+
+\b deleting files\
+
+\b0 \
+rm filename\
+\
+
+\b moving files\
+
+\b0 \
+mv filename filename\
+\
+
+\b rename file \
+
+\b0 \
+mv filename filename\
+\
+\
+
+\b Creating directory\
+
+\b0 \
+mkdir directoryname\
+mkdir d1 d2 d3\
+\
+\
+
+\b Removing directory\
+
+\b0 \
+rmdir directoryname\
+\
+rm -rf filename/directoryname\
+\
+\
+
+\b clear command - clear terminal old commands to work\
+history command - view history\
+man command - help\
+sudo - allows regular users to access programs of super user with security \
+\
+
+\b0 \
+\
+\
+
+\b \ul File permisisions\
+
+\b0 \
+\ulnone 1. User- owner.  7-rwx\
+2. User group- access with permission only for the group members. 6-rw\
+3. Other- other than user who do not own the file. 4-r\
+\
+
+\b Permissions examples: chmod- change mode\
+
+\b0 \
+chmod 764 filename\
+\
+\
+
+\b Symbolic mode:\
+
+\b0 \
+*-add\
+\'97remove\
+=assign\
+\
+U-user\
+G-group\
+O-other\
+A-All\
+\
+\
+chmod o=rwx filename\
+\
+sudo chown user group filename\
+\
+\
+chgrp group filename\
+\
+\
+\
+\
+
+\b Redirection in linux\
+
+\b0 \
+> -output\
+\
+>> appends in existing file\
+< -input   (file attachment)\
+\
+
+\b Example\
+
+\b0 ls -al > listings\
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+\cf2 centos@ip-172-31-34-200 ~]$ ls -al > listings\
+[centos@ip-172-31-34-200 ~]$ cat listings\
+total 1513204\
+drwx------. 3 centos centos        222 Jul 24 05:05 .\
+drwxr-xr-x. 3 root   root           20 Jul 19 12:07 ..\
+-rw-------. 1 centos centos       1271 Jul 23 14:01 .bash_history\
+-rw-r--r--. 1 centos centos         18 Apr 11 00:53 .bash_logout\
+-rw-r--r--. 1 centos centos        193 Apr 11 00:53 .bash_profile\
+-rw-r--r--. 1 centos centos        231 Apr 11 00:53 .bashrc\
+-rw-------. 1 centos centos        345 Jul 23 10:27 .mysql_history\
+drwx------. 2 centos centos         29 Jul 19 12:07 .ssh\
+-rw-rw-r--. 1 centos centos          0 Jul 24 05:05 listings\
+-rw-rw-r--. 1 centos centos       9224 Sep 12  2016 mysql57-community-release-el7-9.noarch.rpm\
+-rwxr-xr-x. 1 centos centos 1549486562 Jul 23 09:26 pokerbaazi-30Mar2015_073001.sql\
+\pard\tx577\tx1155\tx1733\tx2311\tx2889\tx3467\tx4045\tx4623\tx5201\tx5779\tx6357\tx6935\tx7513\tx8091\tx8669\tx9247\tx9825\tx10403\tx10981\tx11559\tx12137\tx12715\tx13293\tx13871\tx14449\tx15027\tx15605\tx16183\tx16761\tx17339\tx17917\tx18495\tx19072\tx19650\tx20228\tx20806\tx21384\tx21962\tx22540\tx23118\tx23696\tx24274\tx24852\tx25430\tx26008\tx26586\tx27164\tx27742\tx28320\tx28898\tx29476\tx30054\tx30632\tx31210\tx31788\tx32366\tx32944\tx33522\tx34100\tx34678\tx35256\tx35834\tx36412\tx36990\tx37567\tx38145\tx38723\tx39301\tx39879\tx40457\tx41035\tx41613\tx42191\tx42769\tx43347\tx43925\tx44503\tx45081\tx45659\tx46237\tx46815\tx47393\tx47971\tx48549\tx49127\tx49705\tx50283\tx50861\tx51439\tx52017\tx52595\tx53173\tx53751\tx54329\tx54907\tx55485\tx56062\tx56640\tx57218\tx57796\li577\fi-578\pardirnatural\partightenfactor0
+\cf2 \
+\
+\'93>&\'94 redirects the output of one file into another file\
+Example:abc>dirlist>&1\
+\
+
+\b To find a file with its name \
+
+\b0 \
+find -name \'91*my*\'92\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+\cf2 [centos@ip-172-31-34-200 ~]$ find -name '*my*'\
+./mysql57-community-release-el7-9.noarch.rpm\
+./.mysql_history\
+\pard\tx577\tx1155\tx1733\tx2311\tx2889\tx3467\tx4045\tx4623\tx5201\tx5779\tx6357\tx6935\tx7513\tx8091\tx8669\tx9247\tx9825\tx10403\tx10981\tx11559\tx12137\tx12715\tx13293\tx13871\tx14449\tx15027\tx15605\tx16183\tx16761\tx17339\tx17917\tx18495\tx19072\tx19650\tx20228\tx20806\tx21384\tx21962\tx22540\tx23118\tx23696\tx24274\tx24852\tx25430\tx26008\tx26586\tx27164\tx27742\tx28320\tx28898\tx29476\tx30054\tx30632\tx31210\tx31788\tx32366\tx32944\tx33522\tx34100\tx34678\tx35256\tx35834\tx36412\tx36990\tx37567\tx38145\tx38723\tx39301\tx39879\tx40457\tx41035\tx41613\tx42191\tx42769\tx43347\tx43925\tx44503\tx45081\tx45659\tx46237\tx46815\tx47393\tx47971\tx48549\tx49127\tx49705\tx50283\tx50861\tx51439\tx52017\tx52595\tx53173\tx53751\tx54329\tx54907\tx55485\tx56062\tx56640\tx57218\tx57796\li577\fi-578\pardirnatural\partightenfactor0
+\cf2 \
+
+\b \
+Tar command\
+
+\b0 \
+\pard\pardeftab720\sl500\sa200\qj\partightenfactor0
+
+\b \cf2 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \outl0\strokewidth0 \strokec2 Syntax
+\b0 :\
+\pard\pardeftab720\sl360\qj\partightenfactor0
+\cf2 tar [options] [archive-file] [file or directory to be archived]\
+\pard\pardeftab720\sl500\sa200\qj\partightenfactor0
+\cf2 \ul \ulc2 Options\ulnone :\uc0\u8232 -c :\'a0Creates Archive\u8232 -x :\'a0Extract the archive\u8232 -f :\'a0creates archive with given filename\u8232 -t :\'a0displays or lists files in archived file\u8232 -u :\'a0archives and adds to an existing archive file\u8232 -v :\'a0Displays Verbose Information\u8232 -A :\'a0Concatenates the archive files\u8232 -z :\'a0zip, tells tar command that create tar file using gzip\u8232 -j :\'a0filter archive tar file using tbzip\u8232 -W :\'a0Verify a archive file\u8232 -r :\'a0update or add file or directory in already existed .tar file\
+\
+\ul Example\ulnone :\
+\
+\pard\pardeftab720\sl360\qj\partightenfactor0
+\cf2 $ tar cvf file.tar *.c\
+\
+\pard\pardeftab720\sl500\sa200\qj\partightenfactor0
+\cf2 Output :\
+\pard\pardeftab720\sl360\qj\partightenfactor0
+\cf2 os2.c\
+os3.c\
+os4.c\
+\pard\tx577\tx1155\tx1733\tx2311\tx2889\tx3467\tx4045\tx4623\tx5201\tx5779\tx6357\tx6935\tx7513\tx8091\tx8669\tx9247\tx9825\tx10403\tx10981\tx11559\tx12137\tx12715\tx13293\tx13871\tx14449\tx15027\tx15605\tx16183\tx16761\tx17339\tx17917\tx18495\tx19072\tx19650\tx20228\tx20806\tx21384\tx21962\tx22540\tx23118\tx23696\tx24274\tx24852\tx25430\tx26008\tx26586\tx27164\tx27742\tx28320\tx28898\tx29476\tx30054\tx30632\tx31210\tx31788\tx32366\tx32944\tx33522\tx34100\tx34678\tx35256\tx35834\tx36412\tx36990\tx37567\tx38145\tx38723\tx39301\tx39879\tx40457\tx41035\tx41613\tx42191\tx42769\tx43347\tx43925\tx44503\tx45081\tx45659\tx46237\tx46815\tx47393\tx47971\tx48549\tx49127\tx49705\tx50283\tx50861\tx51439\tx52017\tx52595\tx53173\tx53751\tx54329\tx54907\tx55485\tx56062\tx56640\tx57218\tx57796\li577\fi-578\pardirnatural\partightenfactor0
+\cf2 \kerning1\expnd0\expndtw0 \CocoaLigature0 \outl0\strokewidth0 \
+\pard\pardeftab720\sl500\sa200\qj\partightenfactor0
+
+\b \cf2 \expnd0\expndtw0\kerning0
+\ul \ulc2 \CocoaLigature1 \outl0\strokewidth0 \strokec2 viewing the Archive using option -tvf\
+\pard\pardeftab720\sl360\qj\partightenfactor0
+
+\b0 \cf2 \ulnone $ tar tvf file.tar\
+\pard\pardeftab720\sl500\sa200\qj\partightenfactor0
+\cf2 Output :\
+\pard\pardeftab720\sl360\qj\partightenfactor0
+\cf2 -rwxrwxrwx root/root       191 2017-09-17 02:20 os2.c\
+-rwxrwxrwx root/root       218 2017-09-17 02:20 os3.c\
+-rwxrwxrwx root/root       493 2017-09-17 02:20 os4.c\
+\pard\tx577\tx1155\tx1733\tx2311\tx2889\tx3467\tx4045\tx4623\tx5201\tx5779\tx6357\tx6935\tx7513\tx8091\tx8669\tx9247\tx9825\tx10403\tx10981\tx11559\tx12137\tx12715\tx13293\tx13871\tx14449\tx15027\tx15605\tx16183\tx16761\tx17339\tx17917\tx18495\tx19072\tx19650\tx20228\tx20806\tx21384\tx21962\tx22540\tx23118\tx23696\tx24274\tx24852\tx25430\tx26008\tx26586\tx27164\tx27742\tx28320\tx28898\tx29476\tx30054\tx30632\tx31210\tx31788\tx32366\tx32944\tx33522\tx34100\tx34678\tx35256\tx35834\tx36412\tx36990\tx37567\tx38145\tx38723\tx39301\tx39879\tx40457\tx41035\tx41613\tx42191\tx42769\tx43347\tx43925\tx44503\tx45081\tx45659\tx46237\tx46815\tx47393\tx47971\tx48549\tx49127\tx49705\tx50283\tx50861\tx51439\tx52017\tx52595\tx53173\tx53751\tx54329\tx54907\tx55485\tx56062\tx56640\tx57218\tx57796\li577\fi-578\pardirnatural\partightenfactor0
+\cf2 \kerning1\expnd0\expndtw0 \CocoaLigature0 \outl0\strokewidth0 \
+\
+}

@@ -1,0 +1,687 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf400
+{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red255\green255\blue255;\red180\green36\blue25;
+\red47\green180\blue29;\red60\green95\blue255;}
+{\*\expandedcolortbl;;\csgray\c0;\csgray\c100000;\cssrgb\c76409\c21698\c12524;
+\cssrgb\c20238\c73898\c14947;\cssrgb\c29814\c47883\c100000;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\fs22 \cf2 \cb3 \CocoaLigature0 Last login: Mon Jul 23 15:27:01 on ttys000\
+DigientMacs-MacBook-Air-3:~ digientmaclap24$ cd Downloads/\
+DigientMacs-MacBook-Air-3:Downloads digientmaclap24$ ssh -i "cos.pem" centos@ec2-52-39-180-209.us-west-2.compute.amazonaws.com\
+The authenticity of host 'ec2-52-39-180-209.us-west-2.compute.amazonaws.com (52.39.180.209)' can't be established.\
+RSA key fingerprint is SHA256:A0eZ17u99Spox8VcREeWKNb+LXjM2VA7hYQ5Oo/tiIA.\
+Are you sure you want to continue connecting (yes/no)? yes\
+Warning: Permanently added 'ec2-52-39-180-209.us-west-2.compute.amazonaws.com,52.39.180.209' (RSA) to the list of known hosts.\
+Last login: Mon Jul 23 12:40:19 2018 from 111.93.250.58\
+-bash: warning: setlocale: LC_CTYPE: cannot change locale (UTF-8): No such file or directory\
+[centos@ip-172-31-20-24 ~]$ df -h\
+Filesystem      Size  Used Avail Use% Mounted on\
+/dev/xvda1      7.8G  3.4G  4.1G  46% /\
+tmpfs           498M     0  498M   0% /dev/shm\
+[centos@ip-172-31-20-24 ~]$ lsblk\
+NAME    MAJ:MIN RM SIZE RO TYPE MOUNTPOINT\
+xvda    202:0    0   8G  0 disk \
+`-xvda1 202:1    0   8G  0 part /\
+xvdb    202:16   0  20G  0 disk \
+[centos@ip-172-31-20-24 ~]$ sudo fdisk -l /dev/xvda1\
+\
+Disk /dev/xvda1: 8588 MB, 8588886016 bytes\
+255 heads, 63 sectors/track, 1044 cylinders\
+Units = cylinders of 16065 * 512 = 8225280 bytes\
+Sector size (logical/physical): 512 bytes / 512 bytes\
+I/O size (minimum/optimal): 512 bytes / 512 bytes\
+Disk identifier: 0x00000000\
+\
+[centos@ip-172-31-20-24 ~]$ sudo mkfs -t ext3 /dev/xvdb\
+mke2fs 1.41.12 (17-May-2010)\
+Filesystem label=\
+OS type: Linux\
+Block size=4096 (log=2)\
+Fragment size=4096 (log=2)\
+Stride=0 blocks, Stripe width=0 blocks\
+1310720 inodes, 5242880 blocks\
+262144 blocks (5.00%) reserved for the super user\
+First data block=0\
+Maximum filesystem blocks=4294967296\
+160 block groups\
+32768 blocks per group, 32768 fragments per group\
+8192 inodes per group\
+Superblock backups stored on blocks: \
+	32768, 98304, 163840, 229376, 294912, 819200, 884736, 1605632, 2654208, \
+	4096000\
+\
+Writing inode tables: done                            \
+Creating journal (32768 blocks): done\
+Writing superblocks and filesystem accounting information: done\
+\
+This filesystem will be automatically checked every 31 mounts or\
+180 days, whichever comes first.  Use tune2fs -c or -i to override.\
+[centos@ip-172-31-20-24 ~]$ sudo mkdir /data\
+[centos@ip-172-31-20-24 ~]$ sudo /dev/xvdb /data\
+sudo: /dev/xvdb: command not found\
+[centos@ip-172-31-20-24 ~]$ sudo mount /dev/xvdb /data\
+[centos@ip-172-31-20-24 ~]$ df -h\
+Filesystem      Size  Used Avail Use% Mounted on\
+/dev/xvda1      7.8G  3.4G  4.1G  46% /\
+tmpfs           498M     0  498M   0% /dev/shm\
+/dev/xvdb        20G  173M   19G   1% /data\
+[centos@ip-172-31-20-24 ~]$ mysql -uroot -p\
+Enter password: \
+Welcome to the MySQL monitor.  Commands end with ; or \\g.\
+Your MySQL connection id is 3\
+Server version: 5.7.22 MySQL Community Server (GPL)\
+\
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.\
+\
+Oracle is a registered trademark of Oracle Corporation and/or its\
+affiliates. Other names may be trademarks of their respective\
+owners.\
+\
+Type 'help;' or '\\h' for help. Type '\\c' to clear the current input statement.\
+\
+mysql> select @@datadir;\
++-----------------+\
+| @@datadir       |\
++-----------------+\
+| /var/lib/mysql/ |\
++-----------------+\
+1 row in set (0.00 sec)\
+\
+mysql> exit\
+Bye\
+[centos@ip-172-31-20-24 ~]$ nano /etc/my.cnf\
+[centos@ip-172-31-20-24 ~]$ df -h\
+Filesystem      Size  Used Avail Use% Mounted on\
+/dev/xvda1      7.8G  3.4G  4.1G  46% /\
+tmpfs           498M     0  498M   0% /dev/shm\
+/dev/xvdb        20G  173M   19G   1% /data\
+[centos@ip-172-31-20-24 ~]$ sudo rsync -av /var/lib/mysql /mnt/data\
+sending incremental file list\
+created directory /mnt/data\
+mysql/\
+mysql/auto.cnf\
+mysql/ca-key.pem\
+mysql/ca.pem\
+mysql/client-cert.pem\
+mysql/client-key.pem\
+mysql/ib_buffer_pool\
+mysql/ib_logfile0\
+mysql/ib_logfile1\
+mysql/ibdata1\
+mysql/ibtmp1\
+mysql/mysql.sock\
+mysql/mysql.sock.lock\
+mysql/private_key.pem\
+mysql/public_key.pem\
+mysql/server-cert.pem\
+mysql/server-key.pem\
+mysql/mysql/\
+mysql/mysql/columns_priv.MYD\
+mysql/mysql/columns_priv.MYI\
+mysql/mysql/columns_priv.frm\
+mysql/mysql/db.MYD\
+mysql/mysql/db.MYI\
+mysql/mysql/db.frm\
+mysql/mysql/db.opt\
+mysql/mysql/engine_cost.frm\
+mysql/mysql/engine_cost.ibd\
+mysql/mysql/event.MYD\
+mysql/mysql/event.MYI\
+mysql/mysql/event.frm\
+mysql/mysql/func.MYD\
+mysql/mysql/func.MYI\
+mysql/mysql/func.frm\
+mysql/mysql/general_log.CSM\
+mysql/mysql/general_log.CSV\
+mysql/mysql/general_log.frm\
+mysql/mysql/gtid_executed.frm\
+mysql/mysql/gtid_executed.ibd\
+mysql/mysql/help_category.frm\
+mysql/mysql/help_category.ibd\
+mysql/mysql/help_keyword.frm\
+mysql/mysql/help_keyword.ibd\
+mysql/mysql/help_relation.frm\
+mysql/mysql/help_relation.ibd\
+mysql/mysql/help_topic.frm\
+mysql/mysql/help_topic.ibd\
+mysql/mysql/innodb_index_stats.frm\
+mysql/mysql/innodb_index_stats.ibd\
+mysql/mysql/innodb_table_stats.frm\
+mysql/mysql/innodb_table_stats.ibd\
+mysql/mysql/ndb_binlog_index.MYD\
+mysql/mysql/ndb_binlog_index.MYI\
+mysql/mysql/ndb_binlog_index.frm\
+mysql/mysql/plugin.frm\
+mysql/mysql/plugin.ibd\
+mysql/mysql/proc.MYD\
+mysql/mysql/proc.MYI\
+mysql/mysql/proc.frm\
+mysql/mysql/procs_priv.MYD\
+mysql/mysql/procs_priv.MYI\
+mysql/mysql/procs_priv.frm\
+mysql/mysql/proxies_priv.MYD\
+mysql/mysql/proxies_priv.MYI\
+mysql/mysql/proxies_priv.frm\
+mysql/mysql/server_cost.frm\
+mysql/mysql/server_cost.ibd\
+mysql/mysql/servers.frm\
+mysql/mysql/servers.ibd\
+mysql/mysql/slave_master_info.frm\
+mysql/mysql/slave_master_info.ibd\
+mysql/mysql/slave_relay_log_info.frm\
+mysql/mysql/slave_relay_log_info.ibd\
+mysql/mysql/slave_worker_info.frm\
+mysql/mysql/slave_worker_info.ibd\
+mysql/mysql/slow_log.CSM\
+mysql/mysql/slow_log.CSV\
+mysql/mysql/slow_log.frm\
+mysql/mysql/tables_priv.MYD\
+mysql/mysql/tables_priv.MYI\
+mysql/mysql/tables_priv.frm\
+mysql/mysql/time_zone.frm\
+mysql/mysql/time_zone.ibd\
+mysql/mysql/time_zone_leap_second.frm\
+mysql/mysql/time_zone_leap_second.ibd\
+mysql/mysql/time_zone_name.frm\
+mysql/mysql/time_zone_name.ibd\
+mysql/mysql/time_zone_transition.frm\
+mysql/mysql/time_zone_transition.ibd\
+mysql/mysql/time_zone_transition_type.frm\
+mysql/mysql/time_zone_transition_type.ibd\
+mysql/mysql/user.MYD\
+mysql/mysql/user.MYI\
+mysql/mysql/user.frm\
+mysql/performance_schema/\
+mysql/performance_schema/accounts.frm\
+mysql/performance_schema/cond_instances.frm\
+mysql/performance_schema/db.opt\
+mysql/performance_schema/events_stages_current.frm\
+mysql/performance_schema/events_stages_history.frm\
+mysql/performance_schema/events_stages_history_long.frm\
+mysql/performance_schema/events_stages_summary_by_account_by_event_name.frm\
+mysql/performance_schema/events_stages_summary_by_host_by_event_name.frm\
+mysql/performance_schema/events_stages_summary_by_thread_by_event_name.frm\
+mysql/performance_schema/events_stages_summary_by_user_by_event_name.frm\
+mysql/performance_schema/events_stages_summary_global_by_event_name.frm\
+mysql/performance_schema/events_statements_current.frm\
+mysql/performance_schema/events_statements_history.frm\
+mysql/performance_schema/events_statements_history_long.frm\
+mysql/performance_schema/events_statements_summary_by_account_by_event_name.frm\
+mysql/performance_schema/events_statements_summary_by_digest.frm\
+mysql/performance_schema/events_statements_summary_by_host_by_event_name.frm\
+mysql/performance_schema/events_statements_summary_by_program.frm\
+mysql/performance_schema/events_statements_summary_by_thread_by_event_name.frm\
+mysql/performance_schema/events_statements_summary_by_user_by_event_name.frm\
+mysql/performance_schema/events_statements_summary_global_by_event_name.frm\
+mysql/performance_schema/events_transactions_current.frm\
+mysql/performance_schema/events_transactions_history.frm\
+mysql/performance_schema/events_transactions_history_long.frm\
+mysql/performance_schema/events_transactions_summary_by_account_by_event_name.frm\
+mysql/performance_schema/events_transactions_summary_by_host_by_event_name.frm\
+mysql/performance_schema/events_transactions_summary_by_thread_by_event_name.frm\
+mysql/performance_schema/events_transactions_summary_by_user_by_event_name.frm\
+mysql/performance_schema/events_transactions_summary_global_by_event_name.frm\
+mysql/performance_schema/events_waits_current.frm\
+mysql/performance_schema/events_waits_history.frm\
+mysql/performance_schema/events_waits_history_long.frm\
+mysql/performance_schema/events_waits_summary_by_account_by_event_name.frm\
+mysql/performance_schema/events_waits_summary_by_host_by_event_name.frm\
+mysql/performance_schema/events_waits_summary_by_instance.frm\
+mysql/performance_schema/events_waits_summary_by_thread_by_event_name.frm\
+mysql/performance_schema/events_waits_summary_by_user_by_event_name.frm\
+mysql/performance_schema/events_waits_summary_global_by_event_name.frm\
+mysql/performance_schema/file_instances.frm\
+mysql/performance_schema/file_summary_by_event_name.frm\
+mysql/performance_schema/file_summary_by_instance.frm\
+mysql/performance_schema/global_status.frm\
+mysql/performance_schema/global_variables.frm\
+mysql/performance_schema/host_cache.frm\
+mysql/performance_schema/hosts.frm\
+mysql/performance_schema/memory_summary_by_account_by_event_name.frm\
+mysql/performance_schema/memory_summary_by_host_by_event_name.frm\
+mysql/performance_schema/memory_summary_by_thread_by_event_name.frm\
+mysql/performance_schema/memory_summary_by_user_by_event_name.frm\
+mysql/performance_schema/memory_summary_global_by_event_name.frm\
+mysql/performance_schema/metadata_locks.frm\
+mysql/performance_schema/mutex_instances.frm\
+mysql/performance_schema/objects_summary_global_by_type.frm\
+mysql/performance_schema/performance_timers.frm\
+mysql/performance_schema/prepared_statements_instances.frm\
+mysql/performance_schema/replication_applier_configuration.frm\
+mysql/performance_schema/replication_applier_status.frm\
+mysql/performance_schema/replication_applier_status_by_coordinator.frm\
+mysql/performance_schema/replication_applier_status_by_worker.frm\
+mysql/performance_schema/replication_connection_configuration.frm\
+mysql/performance_schema/replication_connection_status.frm\
+mysql/performance_schema/replication_group_member_stats.frm\
+mysql/performance_schema/replication_group_members.frm\
+mysql/performance_schema/rwlock_instances.frm\
+mysql/performance_schema/session_account_connect_attrs.frm\
+mysql/performance_schema/session_connect_attrs.frm\
+mysql/performance_schema/session_status.frm\
+mysql/performance_schema/session_variables.frm\
+mysql/performance_schema/setup_actors.frm\
+mysql/performance_schema/setup_consumers.frm\
+mysql/performance_schema/setup_instruments.frm\
+mysql/performance_schema/setup_objects.frm\
+mysql/performance_schema/setup_timers.frm\
+mysql/performance_schema/socket_instances.frm\
+mysql/performance_schema/socket_summary_by_event_name.frm\
+mysql/performance_schema/socket_summary_by_instance.frm\
+mysql/performance_schema/status_by_account.frm\
+mysql/performance_schema/status_by_host.frm\
+mysql/performance_schema/status_by_thread.frm\
+mysql/performance_schema/status_by_user.frm\
+mysql/performance_schema/table_handles.frm\
+mysql/performance_schema/table_io_waits_summary_by_index_usage.frm\
+mysql/performance_schema/table_io_waits_summary_by_table.frm\
+mysql/performance_schema/table_lock_waits_summary_by_table.frm\
+mysql/performance_schema/threads.frm\
+mysql/performance_schema/user_variables_by_thread.frm\
+mysql/performance_schema/users.frm\
+mysql/performance_schema/variables_by_thread.frm\
+mysql/sql55/\
+mysql/sql55/mysql55.sql\
+mysql/sys/\
+mysql/sys/db.opt\
+mysql/sys/host_summary.frm\
+mysql/sys/host_summary_by_file_io.frm\
+mysql/sys/host_summary_by_file_io_type.frm\
+mysql/sys/host_summary_by_stages.frm\
+mysql/sys/host_summary_by_statement_latency.frm\
+mysql/sys/host_summary_by_statement_type.frm\
+mysql/sys/innodb_buffer_stats_by_schema.frm\
+mysql/sys/innodb_buffer_stats_by_table.frm\
+mysql/sys/innodb_lock_waits.frm\
+mysql/sys/io_by_thread_by_latency.frm\
+mysql/sys/io_global_by_file_by_bytes.frm\
+mysql/sys/io_global_by_file_by_latency.frm\
+mysql/sys/io_global_by_wait_by_bytes.frm\
+mysql/sys/io_global_by_wait_by_latency.frm\
+mysql/sys/latest_file_io.frm\
+mysql/sys/memory_by_host_by_current_bytes.frm\
+mysql/sys/memory_by_thread_by_current_bytes.frm\
+mysql/sys/memory_by_user_by_current_bytes.frm\
+mysql/sys/memory_global_by_current_bytes.frm\
+mysql/sys/memory_global_total.frm\
+mysql/sys/metrics.frm\
+mysql/sys/processlist.frm\
+mysql/sys/ps_check_lost_instrumentation.frm\
+mysql/sys/schema_auto_increment_columns.frm\
+mysql/sys/schema_index_statistics.frm\
+mysql/sys/schema_object_overview.frm\
+mysql/sys/schema_redundant_indexes.frm\
+mysql/sys/schema_table_lock_waits.frm\
+mysql/sys/schema_table_statistics.frm\
+mysql/sys/schema_table_statistics_with_buffer.frm\
+mysql/sys/schema_tables_with_full_table_scans.frm\
+mysql/sys/schema_unused_indexes.frm\
+mysql/sys/session.frm\
+mysql/sys/session_ssl_status.frm\
+mysql/sys/statement_analysis.frm\
+mysql/sys/statements_with_errors_or_warnings.frm\
+mysql/sys/statements_with_full_table_scans.frm\
+mysql/sys/statements_with_runtimes_in_95th_percentile.frm\
+mysql/sys/statements_with_sorting.frm\
+mysql/sys/statements_with_temp_tables.frm\
+mysql/sys/sys_config.TRG\
+mysql/sys/sys_config.frm\
+mysql/sys/sys_config.ibd\
+mysql/sys/sys_config_insert_set_user.TRN\
+mysql/sys/sys_config_update_set_user.TRN\
+mysql/sys/user_summary.frm\
+mysql/sys/user_summary_by_file_io.frm\
+mysql/sys/user_summary_by_file_io_type.frm\
+mysql/sys/user_summary_by_stages.frm\
+mysql/sys/user_summary_by_statement_latency.frm\
+mysql/sys/user_summary_by_statement_type.frm\
+mysql/sys/version.frm\
+mysql/sys/wait_classes_global_by_avg_latency.frm\
+mysql/sys/wait_classes_global_by_latency.frm\
+mysql/sys/waits_by_host_by_latency.frm\
+mysql/sys/waits_by_user_by_latency.frm\
+mysql/sys/waits_global_by_latency.frm\
+mysql/sys/x@0024host_summary.frm\
+mysql/sys/x@0024host_summary_by_file_io.frm\
+mysql/sys/x@0024host_summary_by_file_io_type.frm\
+mysql/sys/x@0024host_summary_by_stages.frm\
+mysql/sys/x@0024host_summary_by_statement_latency.frm\
+mysql/sys/x@0024host_summary_by_statement_type.frm\
+mysql/sys/x@0024innodb_buffer_stats_by_schema.frm\
+mysql/sys/x@0024innodb_buffer_stats_by_table.frm\
+mysql/sys/x@0024innodb_lock_waits.frm\
+mysql/sys/x@0024io_by_thread_by_latency.frm\
+mysql/sys/x@0024io_global_by_file_by_bytes.frm\
+mysql/sys/x@0024io_global_by_file_by_latency.frm\
+mysql/sys/x@0024io_global_by_wait_by_bytes.frm\
+mysql/sys/x@0024io_global_by_wait_by_latency.frm\
+mysql/sys/x@0024latest_file_io.frm\
+mysql/sys/x@0024memory_by_host_by_current_bytes.frm\
+mysql/sys/x@0024memory_by_thread_by_current_bytes.frm\
+mysql/sys/x@0024memory_by_user_by_current_bytes.frm\
+mysql/sys/x@0024memory_global_by_current_bytes.frm\
+mysql/sys/x@0024memory_global_total.frm\
+mysql/sys/x@0024processlist.frm\
+mysql/sys/x@0024ps_digest_95th_percentile_by_avg_us.frm\
+mysql/sys/x@0024ps_digest_avg_latency_distribution.frm\
+mysql/sys/x@0024ps_schema_table_statistics_io.frm\
+mysql/sys/x@0024schema_flattened_keys.frm\
+mysql/sys/x@0024schema_index_statistics.frm\
+mysql/sys/x@0024schema_table_lock_waits.frm\
+mysql/sys/x@0024schema_table_statistics.frm\
+mysql/sys/x@0024schema_table_statistics_with_buffer.frm\
+mysql/sys/x@0024schema_tables_with_full_table_scans.frm\
+mysql/sys/x@0024session.frm\
+mysql/sys/x@0024statement_analysis.frm\
+mysql/sys/x@0024statements_with_errors_or_warnings.frm\
+mysql/sys/x@0024statements_with_full_table_scans.frm\
+mysql/sys/x@0024statements_with_runtimes_in_95th_percentile.frm\
+mysql/sys/x@0024statements_with_sorting.frm\
+mysql/sys/x@0024statements_with_temp_tables.frm\
+mysql/sys/x@0024user_summary.frm\
+mysql/sys/x@0024user_summary_by_file_io.frm\
+mysql/sys/x@0024user_summary_by_file_io_type.frm\
+mysql/sys/x@0024user_summary_by_stages.frm\
+mysql/sys/x@0024user_summary_by_statement_latency.frm\
+mysql/sys/x@0024user_summary_by_statement_type.frm\
+mysql/sys/x@0024wait_classes_global_by_avg_latency.frm\
+mysql/sys/x@0024wait_classes_global_by_latency.frm\
+mysql/sys/x@0024waits_by_host_by_latency.frm\
+mysql/sys/x@0024waits_by_user_by_latency.frm\
+mysql/sys/x@0024waits_global_by_latency.frm\
+\
+sent 206494343 bytes  received 5450 bytes  58999940.86 bytes/sec\
+total size is 206447708  speedup is 1.00\
+[centos@ip-172-31-20-24 ~]$ sudo mv /var/lib/mysql/ /var/lib/mysql.bak\
+[centos@ip-172-31-20-24 ~]$ sudonano /etc/my.cnf\
+-bash: sudonano: command not found\
+[centos@ip-172-31-20-24 ~]$ sudo nano /etc/my.cnf\
+[centos@ip-172-31-20-24 ~]$ sudo nano /etc/my.cnf\
+[centos@ip-172-31-20-24 ~]$ service mysqld stop\
+cat: /var/run/mysqld/mysqld.pid: Permission denied\
+Stopping mysqld:                                           [\cf4 FAILED\cf2 ]\
+[centos@ip-172-31-20-24 ~]$ sudo su\
+[root@ip-172-31-20-24 centos]# service mysqld stop\
+Stopping mysqld:                                           [\cf5   OK  \cf2 ]\
+[root@ip-172-31-20-24 centos]# service mysqld start\
+MySQL Daemon failed to start.\
+Starting mysqld:                                           [\cf4 FAILED\cf2 ]\
+[root@ip-172-31-20-24 centos]# service mysqld restart\
+Stopping mysqld:                                           [\cf5   OK  \cf2 ]\
+MySQL Daemon failed to start.\
+Starting mysqld:                                           [\cf4 FAILED\cf2 ]\
+[root@ip-172-31-20-24 centos]# nano /etc/my.cnf\
+[root@ip-172-31-20-24 centos]# service mysqld restart\
+Stopping mysqld:                                           [\cf5   OK  \cf2 ]\
+Initializing MySQL database:                               [\cf5   OK  \cf2 ]\
+Starting mysqld:                                           [\cf5   OK  \cf2 ]\
+[root@ip-172-31-20-24 centos]# mysql -uroot -p\
+Enter password: \
+ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)\
+[root@ip-172-31-20-24 centos]# mysql -hlocalhost -uroot -p\
+Enter password: \
+ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)\
+[root@ip-172-31-20-24 centos]# exit\
+exit\
+[centos@ip-172-31-20-24 ~]$ mysql -uroot -p\
+Enter password: \
+ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)\
+[centos@ip-172-31-20-24 ~]$ mysql -uroot -p\
+Enter password: \
+ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)\
+[centos@ip-172-31-20-24 ~]$ mysql -hlocalhost-uroot -p\
+Enter password: \
+ERROR 2005 (HY000): Unknown MySQL server host 'localhost-uroot' (0)\
+[centos@ip-172-31-20-24 ~]$ mysql -hlocalhost -uroot -p\
+Enter password: \
+ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)\
+[centos@ip-172-31-20-24 ~]$ service mysqld status\
+mysqld status unknown due to insufficient privileges.\
+[centos@ip-172-31-20-24 ~]$ sudo su\
+[root@ip-172-31-20-24 centos]# mysql -hlocalhost -uroot -p\
+Enter password: \
+ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)\
+[root@ip-172-31-20-24 centos]# mysql -hlocalhost -uroot -pAravind123!\
+mysql: [Warning] Using a password on the command line interface can be insecure.\
+ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)\
+[root@ip-172-31-20-24 centos]# mysql -hlocalhost -uroot -p\
+Enter password: \
+ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)\
+[root@ip-172-31-20-24 centos]# exit\
+exit\
+[centos@ip-172-31-20-24 ~]$ df -h\
+Filesystem      Size  Used Avail Use% Mounted on\
+/dev/xvda1      7.8G  3.7G  3.7G  50% /\
+tmpfs           498M     0  498M   0% /dev/shm\
+/dev/xvdb        20G  173M   19G   1% /data\
+[centos@ip-172-31-20-24 ~]$ mysql -uroot -p\
+Enter password: \
+ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)\
+[centos@ip-172-31-20-24 ~]$ service mysqld status\
+mysqld status unknown due to insufficient privileges.\
+[centos@ip-172-31-20-24 ~]$ service mysqld start\
+Starting mysqld:                                           [\cf5   OK  \cf2 ]\
+[centos@ip-172-31-20-24 ~]$ mysql -uroot -p\
+Enter password: \
+ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)\
+[centos@ip-172-31-20-24 ~]$ mysql -uroot -p\
+Enter password: \
+ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)\
+[centos@ip-172-31-20-24 ~]$ service mysqld status\
+mysqld status unknown due to insufficient privileges.\
+[centos@ip-172-31-20-24 ~]$ sudo su\
+[root@ip-172-31-20-24 centos]# service mysqld restart\
+Stopping mysqld:                                           [\cf5   OK  \cf2 ]\
+Starting mysqld:                                           [\cf5   OK  \cf2 ]\
+[root@ip-172-31-20-24 centos]# mysql -hlocalhost -uroot -p\
+Enter password: \
+ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)\
+[root@ip-172-31-20-24 centos]# mysql -hlocalhost -uroot -p\
+Enter password: \
+ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)\
+[root@ip-172-31-20-24 centos]# mysql --version\
+mysql  Ver 14.14 Distrib 5.7.22, for Linux (x86_64) using  EditLine wrapper\
+[root@ip-172-31-20-24 centos]# mysql -hlocalhost -uroot  -p\
+Enter password: \
+ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)\
+[root@ip-172-31-20-24 centos]# mysql -hlocalhost -uroot  -p\
+Enter password: \
+ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)\
+[root@ip-172-31-20-24 centos]# mysql -hlocalhost -uroot  -p\
+Enter password: \
+ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: NO)\
+[root@ip-172-31-20-24 centos]# \
+[root@ip-172-31-20-24 centos]# mysql -hlocalhost -uroot  -p\
+Enter password: \
+ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)\
+[root@ip-172-31-20-24 centos]# cd /var/lib/\
+[root@ip-172-31-20-24 lib]# ll\
+total 84\
+drwxr-xr-x. 2 root    root  4096 Jun  5 13:57 \cf6 alternatives\cf2 \
+drwx------. 3 root    root  4096 Jun  5 13:58 \cf6 authconfig\cf2 \
+drwxr-xr-x. 8 root    root  4096 Jul 23 13:16 \cf6 cloud\cf2 \
+drwxr-xr-x. 2 root    root  4096 Jul 19 10:42 \cf6 dhclient\cf2 \
+drwxr-xr-x. 2 root    root  4096 Sep 23  2011 \cf6 games\cf2 \
+-rw-r--r--. 1 root    root   284 Jul 23 05:13 logrotate.status\
+drwxr-xr-x. 2 root    root  4096 Jul 19 10:42 \cf6 misc\cf2 \
+drwxr-x--x. 5 mysql   mysql 4096 Jul 23 13:47 \cf6 mysql\cf2 \
+drwxr-x---. 2 mysql   mysql 4096 Jul 23 13:40 \cf6 mysql-files\cf2 \
+drwxr-x---. 2 mysql   mysql 4096 Mar  4 14:22 \cf6 mysql-keyring\cf2 \
+drwxr-x--x. 6 mysql   mysql 4096 Jul 23 13:37 \cf6 mysql.bak\cf2 \
+drwxr-xr-x. 2 root    root  4096 Jun  5 13:57 \cf6 plymouth\cf2 \
+drwx------. 2 postfix root  4096 Jul 19 10:42 \cf6 postfix\cf2 \
+-rw-------. 1 root    root  4096 Jul 23 13:16 random-seed\
+drwxr-xr-x. 2 root    root  4096 Jul 23 13:01 \cf6 rpm\cf2 \
+drwx------. 2 root    root  4096 Dec 17  2014 \cf6 rsyslog\cf2 \
+drwxr-xr-x. 2 root    root  4096 Nov 18  2016 \cf6 selinux\cf2 \
+drwxr-xr-x. 2 root    root  4096 Jun  5 13:57 \cf6 sepolgen\cf2 \
+drwxr-xr-x. 4 root    root  4096 Jun  5 13:57 \cf6 stateless\cf2 \
+drwxr-xr-x. 3 root    root  4096 Jun  5 13:57 \cf6 udev\cf2 \
+drwxr-xr-x. 6 root    root  4096 Jul 23 09:51 \cf6 yum\cf2 \
+[root@ip-172-31-20-24 lib]# vi /etc/my.cnf\
+[root@ip-172-31-20-24 lib]# mysql -uroot  -p\
+Enter password: \
+ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)\
+[root@ip-172-31-20-24 lib]# sudo mysqld_safe --skip-grant-tables &\
+[1] 3147\
+[root@ip-172-31-20-24 lib]# 2018-07-23T13:53:43.719968Z mysqld_safe Logging to '/var/log/mysqld.log'.\
+2018-07-23T13:53:43.781825Z mysqld_safe A mysqld process already exists\
+\
+[1]+  Exit 1                  sudo mysqld_safe --skip-grant-tables\
+[root@ip-172-31-20-24 lib]# \
+[root@ip-172-31-20-24 lib]# mysql -uroot\
+ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: NO)\
+[root@ip-172-31-20-24 lib]# service mysqld stop\
+Stopping mysqld:                                           [\cf5   OK  \cf2 ]\
+[root@ip-172-31-20-24 lib]# sudo mysqld_safe --skip-grant-tables &\
+[1] 3326\
+[root@ip-172-31-20-24 lib]# 2018-07-23T13:54:34.515126Z mysqld_safe Logging to '/var/log/mysqld.log'.\
+2018-07-23T13:54:34.538447Z mysqld_safe Starting mysqld daemon with databases from /var/lib/mysql\
+\
+[root@ip-172-31-20-24 lib]# mysql -uroot\
+Welcome to the MySQL monitor.  Commands end with ; or \\g.\
+Your MySQL connection id is 2\
+Server version: 5.7.22 MySQL Community Server (GPL)\
+\
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.\
+\
+Oracle is a registered trademark of Oracle Corporation and/or its\
+affiliates. Other names may be trademarks of their respective\
+owners.\
+\
+Type 'help;' or '\\h' for help. Type '\\c' to clear the current input statement.\
+\
+mysql> \
+mysql> use mysql;\
+Reading table information for completion of table and column names\
+You can turn off this feature to get a quicker startup with -A\
+\
+Database changed\
+mysql> update user set password=PASSWORD("mynewpassword") where User='root';\
+ERROR 1054 (42S22): Unknown column 'password' in 'field list'\
+mysql> flush privileges;\
+Query OK, 0 rows affected (0.00 sec)\
+\
+mysql> update user set password=("mynewpassword") where User='root';\
+ERROR 1054 (42S22): Unknown column 'password' in 'field list'\
+mysql> update user set password=PASSWORD where User='root';\
+ERROR 1054 (42S22): Unknown column 'password' in 'field list'\
+mysql> update user set password=PASSWORD("Aravind@123") where User='root';\
+ERROR 1054 (42S22): Unknown column 'password' in 'field list'\
+mysql> update user set password=PASSWORD("mynewpassword") where User='root';\
+ERROR 1054 (42S22): Unknown column 'password' in 'field list'\
+mysql> update user set password=PASSWORD("mynewpassword") where User='root';\
+ERROR 1054 (42S22): Unknown column 'password' in 'field list'\
+mysql> update user set password="mynewpassword" where User='root';\
+ERROR 1054 (42S22): Unknown column 'password' in 'field list'\
+mysql> update user set authentication_string=password('YOURSUPERSECRETPASSWORD') where user='root';\
+Query OK, 1 row affected, 1 warning (0.00 sec)\
+Rows matched: 1  Changed: 1  Warnings: 1\
+\
+mysql> flush privileges;\
+Query OK, 0 rows affected (0.00 sec)\
+\
+mysql> exit\
+Bye\
+[root@ip-172-31-20-24 lib]# mysql -uroot -p\
+Enter password: \
+ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: NO)\
+[root@ip-172-31-20-24 lib]# mysql -uroot -p\
+Enter password: \
+Welcome to the MySQL monitor.  Commands end with ; or \\g.\
+Your MySQL connection id is 4\
+Server version: 5.7.22\
+\
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.\
+\
+Oracle is a registered trademark of Oracle Corporation and/or its\
+affiliates. Other names may be trademarks of their respective\
+owners.\
+\
+Type 'help;' or '\\h' for help. Type '\\c' to clear the current input statement.\
+\
+mysql> exit\
+Bye\
+[root@ip-172-31-20-24 lib]# update user set authentication_string=password('YOURSUPERSECRETPASSWORD') where user='root';\
+bash: syntax error near unexpected token `('\
+[root@ip-172-31-20-24 lib]# update user set authentication_string=password('YOURSUPERSECRETPASSWORD') where user='root';\
+bash: syntax error near unexpected token `('\
+[root@ip-172-31-20-24 lib]# mysql -uroot -p\
+Enter password: \
+Welcome to the MySQL monitor.  Commands end with ; or \\g.\
+Your MySQL connection id is 5\
+Server version: 5.7.22\
+\
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.\
+\
+Oracle is a registered trademark of Oracle Corporation and/or its\
+affiliates. Other names may be trademarks of their respective\
+owners.\
+\
+Type 'help;' or '\\h' for help. Type '\\c' to clear the current input statement.\
+\
+mysql> update user set authentication_string=password('YOURSUPERSECRETPASSWORD') where user='root';\
+ERROR 1046 (3D000): No database selected\
+mysql> update user set authentication_string=password('ARAVIND123!') where user='root';\
+ERROR 1046 (3D000): No database selected\
+mysql> USE MYSQL;\
+ERROR 1820 (HY000): You must reset your password using ALTER USER statement before executing this statement.\
+mysql> use mysql;\
+ERROR 1820 (HY000): You must reset your password using ALTER USER statement before executing this statement.\
+mysql> show databases;\
+ERROR 1820 (HY000): You must reset your password using ALTER USER statement before executing this statement.\
+mysql> exit\
+Bye\
+[root@ip-172-31-20-24 lib]# mysql -uroot -p\
+Enter password: \
+Welcome to the MySQL monitor.  Commands end with ; or \\g.\
+Your MySQL connection id is 6\
+Server version: 5.7.22\
+\
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.\
+\
+Oracle is a registered trademark of Oracle Corporation and/or its\
+affiliates. Other names may be trademarks of their respective\
+owners.\
+\
+Type 'help;' or '\\h' for help. Type '\\c' to clear the current input statement.\
+\
+mysql> SHOW DATABASES;\
+ERROR 1820 (HY000): You must reset your password using ALTER USER statement before executing this statement.\
+mysql> update user set authentication_string=password('ARAVIND1234') where user='root';\
+ERROR 1046 (3D000): No database selected\
+mysql> use mysql;\
+ERROR 1820 (HY000): You must reset your password using ALTER USER statement before executing this statement.\
+mysql> ALTER USER 'root'@localhost' IDENTIFIED BY 'ARAVIND1234';\
+    '> '\
+    -> ;\
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' IDENTIFIED BY 'ARAVIND1234';\
+'' at line 1\
+mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY 'ARAVIND1234';\
+Query OK, 0 rows affected (0.00 sec)\
+\
+mysql> use mysql;\
+Reading table information for completion of table and column names\
+You can turn off this feature to get a quicker startup with -A\
+\
+Database changed\
+mysql> exit\
+Bye\
+[root@ip-172-31-20-24 lib]# mysql -uroot -p\
+Enter password: \
+Welcome to the MySQL monitor.  Commands end with ; or \\g.\
+Your MySQL connection id is 7\
+Server version: 5.7.22 MySQL Community Server (GPL)\
+\
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.\
+\
+Oracle is a registered trademark of Oracle Corporation and/or its\
+affiliates. Other names may be trademarks of their respective\
+owners.\
+\
+Type 'help;' or '\\h' for help. Type '\\c' to clear the current input statement.\
+\
+mysql> \
+}
