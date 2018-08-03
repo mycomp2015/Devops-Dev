@@ -1,0 +1,3 @@
+"USER_ID","USERNAME","CONTACT","EMAIL_ID","sum(game_transaction_history.WIN)","sum(game_transaction_history.STAKE)","sum(game_transaction_history.REVENUE)","sum(game_transaction_history.REAL_REVENUE)","sum(game_transaction_history.ACTUAL_REVENUE)","sum(game_transaction_history.BONUS_REVENUE)","sum(game_transaction_history.SERVICE_TAX)"
+10839,"aravindjey",9884279171,"aravind@digient.in",3762.42,5351.04,82.82,82.82,70.46,0.00,12.34
+10840,"nasreen",8438263083,"nasreen@digient.in",6965.14,5351.04,82.82,82.82,70.47,0.00,12.34
