@@ -1,0 +1,56 @@
+.nav1{
+    
+    min-height: 90px;
+    background-color: rgb(25, 4, 44);
+     
+
+}
+#navbar-height {
+    height: 90px;
+}
+.logo{
+    padding:2%;
+    float: none;
+    margin: 0;
+}
+.button0{
+    color: goldenrod;
+}
+.button1{
+    padding: 4%;
+}
+.link{
+    text-decoration:underline;
+}
+.text1{
+    text-decoration-color: white;
+    color:white;
+}
+#pass{
+    
+    align-content:right;
+}
+#pass1{
+    padding: 4px;
+    align-content:right;
+}
+#bg{
+    background: rgb(27, 26, 26);
+}
+#bg1{
+    background: #000;
+}
+#font{
+    color: white;
+}
+#font1{
+    color: rgb(168, 166, 166);
+}
+.b{
+    font-size: 11px;
+    line-height: 1.42857143;
+    color: white;
+}
+/* .a:hover{
+    color:yellow;
+} */
