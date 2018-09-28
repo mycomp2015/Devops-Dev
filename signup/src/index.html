@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html>
+    <head>
+            <script>
+                    function startTime() {
+                        var today = new Date();
+                        var h = today.getHours();
+                        var m = today.getMinutes();
+                        var s = today.getSeconds();
+                        m = checkTime(m);
+                        s = checkTime(s);
+                        document.getElementById('txt').innerHTML =
+                        h + ":" + m + ":" + s;
+                        var t = setTimeout(startTime, 500);
+                    }
+                    function checkTime(i) {
+                        if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+                        return i;
+                    }
+                </script>
+        <style >
+            body{
+                background-color: black;
+                overflow: hidden;
+                height: 100%;
+                border: 1px solid red;
+                width: 100vw;
+                height: 100vh;
+                left: 0%;
+                top: 0%;
+                background-image: url(bg.png);
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                margin: 0;
+                padding: 0;
+            }
+            .topnav {
+                overflow: hidden;
+                background-color: rgb(2, 2, 2);
+               height:7%
+               
+            }
+
+            .topnav a {
+                float: left;
+                color: #f2f2f2;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+                font-size: 1.1vw;
+                /* font-size: 17px; */
+                cursor: pointer;
+            }
+
+            .topnav a:hover {
+                background-color: #ddd;
+                color: black;
+            }
+
+            .topnav a.active {
+                /* background-color: #4CAF50; */
+                color: white;
+            } 
+            #time{
+                color:white;
+                float:right;
+                padding:12px;
+            }
+            .logopart{
+                position: relative;
+                width:100%;
+                height: 15%;
+
+            }
+            .logopic{
+                position: relative;
+                width:10%;
+                height:100%;
+                object-fit: cover;
+                float:left;
+            }
+            .login1
+            {
+                position: relative;
+                width:28%;
+                height: 100%;
+                border: 2px solid black;
+                padding: 0px;
+                background: url(loginbg.jpeg);
+                background-repeat: no-repeat;
+                background-size: cover;
+                float:right;   
+               
+                font-size: 1.0vw;
+                color:white;
+                /* background-color:rgb(247, 240, 240); */
+                /* display: flex; 
+                align-items: center;
+                justify-content: center; */
+            } 
+            .idview{
+                position:relative;
+                width:100%;
+                height:30%;
+
+            }
+            .user{
+                width:50%;
+                float:left;
+            }
+            .pass{
+                width:50%;
+                float:left;
+            }
+            .textbx{
+                position: relative;
+                float: left;
+                width: 100%;
+                height: 30%;
+            }
+            .acc{
+                width: 100%;
+                height: 30%;
+                position: relative;
+                float: left;
+                top:30%;
+            }
+            .buttonmain{
+                position: relative;
+                width:25%;
+                height:100%;
+                float:left; 
+
+            }
+                    
+            .button3{
+                
+                position: relative;
+                text-align: center;
+                padding: 4px 15px;
+                background-color: rgb(211, 169, 31);
+                width: 20%;
+                height: 30%;
+                font-size: 1.0vw;
+                outline: thick;
+                color: white;
+                border-radius: 10px;
+                box-shadow: 0 4px #999;
+                float: right;
+                left: 1%;
+            }
+            .button4{
+                    /* position: relative; */
+                    text-align: center;
+                    padding: 4px 15px;
+                    background-color: rgb(211, 169, 31);
+                    width: 14%;
+                    height: 45%;
+                    font-size: 1.0vw;
+                    outline: thick;
+                    color: white;
+                    border-radius: 10px;
+                    box-shadow: 0 4px #999;
+                    float: right;
+                /* margin: 40px 0px 1200px 310px; */
+               
+            }
+         #idview {
+            position:relative;
+        }
+        .t1 {
+            width:50%;
+            height:100%;
+            float:left;
+             top:2%;
+            font-size: 1.0vw;
+        }
+        .t2{
+            width:50%;
+            height:100%;
+            float:left;
+             top:2%;
+            font-size: 1.0vw;
+        }
+        .divTable
+      {
+        position: relative;
+    width: 100%;
+    height: 52%;
+    cursor: pointer;
+    border: 1px solid red;
+        
+      }
+      .container{ 
+        position: relative;
+    width: 70%;
+    height: 100%;
+    float: left;
+    cursor: pointer;
+    overflow: scroll;
+          /* left: 30%;
+          top: 35%; */
+
+      }
+  
+      .divRow
+      {
+      /*    /* display: table-row; */
+    position: relative;
+    width: 100%;
+    height: 10%;
+    /* border: 1px solid red; */
+
+         /* border:1px solid red */
+         
+      }
+      
+  
+      .divCell
+      {
+          position: relative;
+          float:left;   
+          width:14%;
+          height: 100%;
+          font-size: 1.1vw;
+          background-color:rgb(247, 240, 240);
+          display: flex; 
+          align-items: center;
+          justify-content: center;
+      }
+      .divCell1
+      {
+          /* position: absolute; */
+          float:left;
+          width: 14%;
+          height: 100%;
+          background-color:rgb(194, 191, 191);
+          display: flex;
+          align-items: center;
+          font-size: 1.1vw;
+          justify-content: center;
+      }
+      .container2{ 
+        position: relative;
+        width: 30%;
+        float: left;
+        height: 100%;
+        cursor: pointer;
+        left:1%
+        /* border: 1px solid red; */
+            /* left: 30%;
+            top: 35%; */
+
+        }
+        .table2{ 
+            position: absolute;
+            width: 40%;
+            height: 100%;
+
+        }
+        
+        .head2,.head3
+        {
+        /* display:table-row;    */
+            position: relative;
+            width:100%;
+            height: 10%;
+            background-color:rgb(13, 3, 53);
+            font-size: 1.2vw;
+            color: white;
+            display: flex; 
+            align-items: center;
+            justify-content: center;
+
+            /* border:1px solid red */
+            
+        }
+        .head3{
+            background-color:rgb(32, 32, 32);
+            width:100%;
+        }
+        .row2
+        {
+        /* display:table-row;    */
+            position: relative;
+            width:100%;
+            height: 75%;
+            background-color:rgb(234, 232, 241);
+            display: flex; 
+            align-items: center;
+            justify-content: center;
+
+            /* border:1px solid red */
+            
+        }
+        .row3
+        {
+        /* display:table-row;    */
+            position: relative;
+            width:100%;
+            height: 15%;
+            background-color:rgb(234, 232, 241);
+            display: flex; 
+            align-items: center;
+            justify-content: center;
+
+            /* border:1px solid red */
+            
+        }
+        .table3{ 
+            position: relative;
+            float: right;
+            width: 50%;
+            height: 100%;
+            left:1%;
+            margin: 0px 36px 0px 0px;
+        /* border: transparent; */
+            
+            /* border:transparent; */
+            /* align-items: center;
+            justify-content: center; */
+            
+
+        }
+        .block1{
+                position:relative;
+                width:98%;
+                height:16%;
+                background-color: blue;
+                color:white;
+                border: 0px solid rgb(26, 4, 63);
+                font-size: 1.1vw;
+                /* display: flex;  */
+            /* align-items:center;
+            justify-content: center; */
+            
+            padding: 2px 8px;
+            border-bottom:3pt solid black;
+                
+        }
+        .button2 {
+            text-align: center;
+        padding: 4px 20px;
+        background-color: rgb(67, 31, 211);
+        width: 30%;
+        outline:thick;
+        color:white;
+        border-radius: 15px;
+    box-shadow: 0 9px #999;
+        }
+        .button1 {
+        text-align: center;
+        padding: 4px 20px;
+        background-color: rgb(67, 31, 211);
+        width: 40%;
+        outline:thick;
+        color:white;
+        border-radius: 15px;
+    box-shadow: 0 9px #999;
+        } 
+        .button1:hover {
+            background-color: #391ecf;
+            border-color:rgb(245, 147, 18);
+            color:rgb(151, 78, 25)
+            }
+            .foot
+        {
+            position: absolute;
+            width: 100%;
+            height:15%;
+            /* background-color:#eee; */
+            /* margin: 400px 0px 0px 0px;         */
+        }
+        .foot1
+        {
+            position: relative;
+            width: 68%;
+            height:1400%;
+            float:left;
+            padding:0px;
+            /* margin: 0px 20px 150px 25px; */
+            /* margin: 30px 0px 0px 20px; */
+            
+        }
+        .foot2
+        {
+            position: relative;
+        width: 30%;
+        height: 129%;
+        float: right;
+        padding: 0px;
+        /* margin: 0px 10px 150px 0px; */
+            
+        }
+        </style>
+    </head>
+    <body  onload="startTime()" >
+
+        <div class="topnav" >
+            <div>
+                <a  href="login.png">My Account</a>
+                <a href="login.png">Buy Chips</a>
+                <a href="login.png">Promotions</a>
+                <a href="login.png">Withdraw Chips</a>
+                <a href="login.png">Convert Chips</a>
+                <a href="login.png">Help</a>
+            </div>
+            <div id="time" >
+                <a href="login.png">Tables:56 </a>
+                <a href="login.png">players:56 </a>
+                <a href="login.png">Tournaments:56 </a>
+                <div id = "time" onload="startTime()" >
+                    <div id="txt" ></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="logopart">
+            <div class="logopic">
+                <img src="logo.png" alt="logo"width="100%" height="100%">
+            </div>
+            <div class="login1">
+                <div id="idview">
+                    <div class="user">User name:</div>
+                    <div class="pass">Password:</div>
+                </div>
+                <div class="textbx">
+                    <div class="t1">
+                    <input type="text" name="firstname" value="User name">
+                </div>
+                <div class="t2">
+                    <input type="text" name="lastname" value="Password">
+                    <div class="button3" button type="button" float="right" right="5%">LOGIN</button> </div>
+                </div>
+                   
+                    <div class="t1" ><input type="checkbox"> Remember me  </div>
+                    <div class="t2">Forget Password?</div>
+                </div>
+                <div class="acc">
+                   <div class="t1" >Don't have an account yet? </div>
+                    <div class="button4" button type="button" >Create</button> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class = "divTable">
+                <div class="container">
+                        <div class="headRow" background-color="black">
+                           <div class="divCell1" align="center">NAME</div>
+                           <div  class="divCell1">TYPE</div>
+                           <div  class="divCell1">STAKES</div>
+                           <div  class="divCell1">BUYIN</div>
+                           <div  class="divCell1">PLAYERS</div>
+                           <div  class="divCell1">WAITING LIST</div>
+                           <div  class="divCell1">ACTION</div>
+                        </div>
+                       <div class="divRow">
+                             <div class="divCell">Alfreds Futterkiste</div>
+                           <div class="divCell">Maria Anders</div>
+                           <div class="divCell">Germany</div>
+                           <div class="divCell">Maria Anders</div>
+                           <div class="divCell">Germany</div>
+                           <div class="divCell">Maria Anders</div>
+                           <div class="divCell" ><div class="button2" button type="button" onclick="alert('Hello world!')" background-color:"blue">Add</button></div>
+                       </div>
+                    </div>
+                       <div class="divRow">
+                           <div class="divCell1">Centro comercial </div>
+                           <div class="divCell1">Francisco Chang</div>
+                           <div class="divCell1">Mexico</div>
+                           <div class="divCell1">weslin</div>
+                           <div class="divCell1">kanyakumari</div>
+                           <div class="divCell1">weslin</div>
+                           <div class="divCell1"><div class="button2" button type="button" onclick="alert('Hello world!')" background-color:"blue">Add</button></div>
+                        </div>
+                      </div>
+                
+                       <div class="divRow">
+                           <div class="divCell">Ernst Handel</div>
+                           <div class="divCell">Roland Mendel</div>
+                           <div class="divCell">Austria</div>
+                           <div class="divCell">Maria Anders</div>
+                           <div class="divCell">Germany</div>
+                           <div class="divCell">Maria Anders</div>
+                           <div class="divCell"><div class="button2" button type="button" onclick="alert('Hello world!')" background-color:"blue">Add</button></div>
+                        </div>
+                      </div>
+                      <div class="divRow">
+                             <div class="divCell1">Island Trading</div>
+                             <div class="divCell1">Helen Bennett</div>
+                             <div class="divCell1">UK</div>
+                             <div class="divCell1">weslin</div>
+                             <div class="divCell1">kanyakumari</div>
+                             <div class="divCell1">weslin</div>
+                             <div class="divCell1"><div class="button2" button type="button" onclick="alert('Hello world!')" background-color:"blue">Add</button></div></div>
+                        </div>
+                        <div class="divRow">
+                             <div class="divCell">Laughing Bacchus </div>
+                             <div class="divCell">Yoshi Tannamuri</div>
+                             <div class="divCell">Canada</div>
+                             <div class="divCell">Maria Anders</div>
+                             <div class="divCell">Germany</div>
+                             <div class="divCell">Maria Anders</div>
+                           <div class="divCell"><div class="button2" button type="button" onclick="alert('Hello world!')" background-color:"blue">Add</button></div>
+                        </div>
+                        </div>
+                        <div class="divRow">
+                             <div class="divCell1">Magazzini  </div>
+                             <div class="divCell1">Giovanni Rovelli</div>
+                             <div class="divCell1">Italy</div>
+                             <div class="divCell1">weslin</div>
+                             <div class="divCell1">kanyakumari</div>
+                             <div class="divCell1">weslin</div>
+                             <div class="divCell1"><div class="button2" button type="button" onclick="alert('Hello world!')" background-color:"blue">Add</button></div>
+                        </div>
+                        </div>
+                        <div class="divRow">
+                                <div class="divCell">digient</div>
+                              <div class="divCell">john</div>
+                              <div class="divCell">Guindy</div>
+                              <div class="divCell">Maria Anders</div>
+                           <div class="divCell">Germany</div>
+                           <div class="divCell">Maria Anders</div>
+                           <div class="divCell"><div class="button2" button type="button" onclick="alert('Hello world!')" background-color:"blue">Add</button></div>
+                        </div>
+                          </div>
+                          <div class="divRow">
+                              <div class="divCell1">HCL</div>
+                              <div class="divCell1">xxx</div>
+                                <div class="divCell1">KBM</div> 
+                              <div class="divCell1">weslin</div>
+                              <div class="divCell1">kanyakumari</div>
+                              <div class="divCell1">weslin</div>
+                              <div class="divCell1"><div class="button2" button type="button" onclick="alert('Hello world!')" background-color:"blue">Add</button></div>
+                            </div>
+                         </div>
+                   
+                          <div class="divRow">
+                              <div class="divCell">TCS</div>
+                              <div class="divCell">yasmin</div>
+                              <div class="divCell">navalur</div>
+                              <div class="divCell">Maria Anders</div>
+                              <div class="divCell">Germany</div>
+                              <div class="divCell">Maria Anders</div>
+                           <div class="divCell"><div class="button2" button type="button" onclick="alert('Hello world!')" background-color:"blue">Add</button></div>
+                        </div>
+                        
+                         </div>
+                         <div class="divRow">
+                                <div class="divCell1">yamaha</div>
+                                <div class="divCell1">sundar</div>
+                                <div class="divCell1">padur</div>
+                                <div class="divCell1">weslin</div>
+                                <div class="divCell1">kanyakumari</div>
+                                <div class="divCell1">weslin</div>
+                                <div class="divCell1"><div class="button2" button type="button" onclick="alert('Hello world!')" background-color:"blue">Add</button></div>
+                            </div>
+                           </div>
+                           <div class="divRow">
+                                <div class="divCell">infosys</div>
+                                <div class="divCell">vicky</div>
+                                <div class="divCell">tambaram</div>
+                                <div class="divCell">Maria Anders</div>
+                           <div class="divCell">Germany</div>
+                           <div class="divCell">Maria Anders</div>
+                           <div class="divCell"><div class="button2" button type="button" onclick="alert('Hello world!')" background-color:"blue">Add</button></div>
+                        </div>
+                           </div>
+                           <div class="divRow">
+                                <div class="divCell1">paypal</div>
+                                <div class="divCell1">weslin</div>
+                                <div class="divCell1">kanyakumari</div>
+                                <div class="divCell1">weslin</div>
+                                <div class="divCell1">kanyakumari</div>
+                                <div class="divCell1">weslin</div>
+                                <div class="divCell1"><div class="button2" button type="button" onclick="alert('Hello world!')" background-color:"blue">Add</button></div>
+                            </div>
+                           </div>
+                           
+                    </div>
+                    <div class="container2">
+                        <div class="table2">
+                                <div class="head2" >TABLE INFORMATION</div>
+                                <div class="row2" > </div>
+                                <div class="row3">
+                                        <div class="button1" button type="button" onclick="alert('Hello world!')" background-color:"blue">Add</button></div>
+                                </div>
+                        </div>
+                        <div class="table3">
+                                <div class="head3"  >RECOMENDED FOR YOU</div>
+                                <div class="block1"  >
+                                    
+                                            25/50<br>
+                                            Pocket Rockets<br>
+                                            Seat 9      Buy-in 1000/5000
+                                    
+                                </div>
+                                <div class="block1"  >
+                                    
+                                        25/50<br>
+                                        Super Tilt(PLO)<br>
+                                        Seat 6      Buy-in 2000/6000
+                                   
+                                    </div>
+                                    <div class="block1"  >
+                                        
+                                            25/50<br>
+                                            Holdern Tilt<br>
+                                            Seat 6      Buy-in 1000/5000
+                                       
+                                    </div>
+                                    <div class="block1"  >
+                                           
+                                                25/50<br>
+                                                Suoer Tilt(PLO)<br>
+                                                Seat 6      Buy-in 2000/6000
+                                            
+                                        </div>
+                                    <div class="block1"  >
+                                        
+                                            25/50<br>
+                                            DangalHoldern <br>
+                                            Seat 9      Buy-in 1000/5000
+                                        
+                                    </div>
+
+                        </div>
+                    </div>
+                 </div>
+        <div class="foot">
+                <div class="foot1">
+                        <img src="cashout.jpg" alt="logo"width="110%" height="11%">
+                </div>
+                <div class="foot2">
+                        <img src="code.png" alt="logo"width="100%" height="120%">
+                </div>
+        </div>
+
+    </body>
+</html>
+        

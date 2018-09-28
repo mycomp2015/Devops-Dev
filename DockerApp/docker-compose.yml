@@ -1,0 +1,18 @@
+ version: '2.0'
+
+ services:
+
+  newdb:
+   image: mysql:latest
+   environment:
+    MYSQL_ROOT_PASSWORD: Adsadmin@09
+   ports:
+    - 3306:3306
+
+  website:
+   image: centos/httpd-24-centos7
+   ports:
+    - 8080:8080
+   links:
+    - newdb
+  
